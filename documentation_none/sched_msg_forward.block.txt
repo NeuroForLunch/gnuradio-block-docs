@@ -1,0 +1,24 @@
+id: sched_msg_forward
+label: msg_forward
+category: '[sched]'
+
+templates:
+  imports: import sched
+  make: sched.msg_forward()
+
+inputs:
+- domain: message
+  id: in
+
+outputs:
+- domain: message
+  id: out
+
+documentation: |-
+    ######################################################
+    ######################################################
+    Add info here
+    ######################################################
+    ######################################################
+
+file_format: 1

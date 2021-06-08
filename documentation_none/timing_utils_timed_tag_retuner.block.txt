@@ -1,0 +1,47 @@
+id: timing_utils_timed_tag_retuner
+label: Timed Tag Retuner (C++)
+category: '[Sandia]/Timing Utilities'
+
+parameters:
+-   id: rate
+    label: Sample Rate
+    dtype: int
+    default: samp_rate
+-   id: dict_key
+    label: Input Key
+    dtype: string
+    default: freq
+-   id: time
+    label: Start Time
+    dtype: float
+    default: '0.0'
+
+inputs:
+-   domain: stream
+    dtype: complex
+-   domain: message
+    id: command
+    optional: true
+
+outputs:
+-   domain: stream
+    dtype: complex
+-   domain: message
+    id: freq
+    optional: true
+
+templates:
+    imports: |-
+        import timing_utils
+        import pmt
+    make: timing_utils.timed_tag_retuner(${rate}, pmt.intern(${dict_key}), int(${time}),
+        (${time} - int(${time})))
+
+documentation: |-
+    ######################################################
+    ######################################################
+    Add info here
+    ######################################################
+    ######################################################
+
+file_format: 1

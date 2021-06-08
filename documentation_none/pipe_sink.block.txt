@@ -1,0 +1,47 @@
+id: pipe_sink
+label: Pipe Sink
+category: '[Pipe]'
+
+parameters:
+- id: in_type
+  label: Input Type
+  dtype: enum
+  options: [complex, float, int, short, byte]
+  option_attributes:
+    size: [gr.sizeof_gr_complex, gr.sizeof_float, gr.sizeof_int,
+           gr.sizeof_short, gr.sizeof_char]
+  hide: part
+- id: in_vlen
+  label: Input Vec Length
+  default: '1'
+  dtype: int
+  hide: ${ 'part' if in_vlen == 1 else 'none' }
+- id: command
+  label: Command
+  dtype: string
+- id: unbuffered
+  label: Unbuffered
+  dtype: bool
+  default: 'False'
+  options: ['False', 'True']
+  option_labels: ['No', 'Yes']
+  hide: ${ 'part' if unbuffered == 'No' else 'none' }
+
+inputs:
+- label: in
+  domain: stream
+  dtype: ${in_type}
+  vlen: ${in_vlen}
+
+templates:
+  imports: import pipe
+  make: pipe.sink(${in_type.size}*${in_vlen}, ${command})
+
+documentation: |-
+    ######################################################
+    ######################################################
+    Add info here
+    ######################################################
+    ######################################################
+
+file_format: 1
