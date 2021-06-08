@@ -1,0 +1,71 @@
+id: pipe_filter
+label: Pipe Filter
+category: '[Pipe]'
+
+parameters:
+- id: in_type
+  label: Input Type
+  dtype: enum
+  options: [complex, float, int, short, byte]
+  option_attributes:
+    size: [gr.sizeof_gr_complex, gr.sizeof_float, gr.sizeof_int,
+           gr.sizeof_short, gr.sizeof_char]
+  hide: part
+- id: in_vlen
+  label: Input Vec Length
+  default: '1'
+  dtype: int
+  hide: ${ 'part' if in_vlen == 1 else 'none' }
+- id: out_type
+  label: Output Type
+  dtype: enum
+  options: [complex, float, int, short, byte]
+  option_attributes:
+    size: [gr.sizeof_gr_complex, gr.sizeof_float, gr.sizeof_int,
+           gr.sizeof_short, gr.sizeof_char]
+  hide: part
+- id: out_vlen
+  label: Output Vec Length
+  default: '1'
+  dtype: int
+  hide: ${ 'part' if out_vlen == 1 else 'none' }
+- id: rel_rate
+  label: Relative Rate
+  default: '1.0'
+  dtype: real
+  hide: ${ 'part' if rel_rate == 1.0 else 'none' }
+- id: command
+  label: Command
+  dtype: string
+- id: unbuffered
+  label: Unbuffered
+  dtype: bool
+  default: 'False'
+  options: ['False', 'True']
+  option_labels: ['No', 'Yes']
+  hide: ${ 'part' if unbuffered == 'No' else 'none' }
+
+asserts:
+- ${ in_vlen > 0 }
+- ${ out_vlen > 0}
+- ${ len(command) > 0 }
+
+inputs:
+- label: in
+  domain: stream
+  dtype: ${in_type}
+  vlen: ${in_vlen}
+
+outputs:
+- label: out
+  domain: stream
+  dtype: ${out_type}
+  vlen: ${out_vlen}
+
+templates:
+  imports: import pipe
+  make: |-
+      pipe.filter(${in_type.size}*${in_vlen}, ${out_type.size}*${out_vlen}, ${rel_rate}, ${command})
+      self.${id}.set_unbuffered(${unbuffered})
+
+file_format: 1

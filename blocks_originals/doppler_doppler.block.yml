@@ -1,0 +1,51 @@
+id: doppler_doppler
+label: Doppler
+category: '[Doppler]'
+
+parameters:
+-   id: gnd_lat
+    label: Ground Station Latitude
+    dtype: float
+    default: '40.4167'
+-   id: gnd_lon
+    label: Ground Station Longitude
+    dtype: float
+    default: '-3.70325'
+-   id: gnd_alt
+    label: Ground Station Altitude
+    dtype: int
+    default: '666'
+-   id: sat_id
+    label: Satellite identificator
+    dtype: string
+    default: 'ISS'
+-   id: tle_file
+    label: File containing TLE
+    dtype: file_open
+-   id: refresh_period
+    label: Refresh deriod [s]
+    dtype: float
+    default: '0.1'
+-   id: verbose
+    label: Verbose
+    dtype: bool
+    default: 'False'
+    options: ['False', 'True']
+    option_labels: ['No', 'Yes']
+
+outputs:
+-   domain: message
+    id: dop_factor
+    optional: true
+-   domain: message
+    id: state
+    optional: true
+
+templates:
+    imports: import doppler
+    make: doppler.doppler(${gnd_lat}, ${gnd_lon}, ${gnd_alt}, ${sat_id}, ${tle_file}, ${refresh_period}, ${verbose})
+
+documentation: |-
+    This block gives the doppler factor.
+
+file_format: 1

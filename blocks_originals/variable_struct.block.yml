@@ -1,0 +1,284 @@
+id: variable_struct
+label: Struct Variable
+flags: [ show_id ]
+
+parameters:
+-   id: field0
+    label: Field 0
+    category: Fields
+    dtype: string
+    default: field0
+    hide: part
+-   id: field1
+    label: Field 1
+    category: Fields
+    dtype: string
+    hide: part
+-   id: field2
+    label: Field 2
+    category: Fields
+    dtype: string
+    hide: part
+-   id: field3
+    label: Field 3
+    category: Fields
+    dtype: string
+    hide: part
+-   id: field4
+    label: Field 4
+    category: Fields
+    dtype: string
+    hide: part
+-   id: field5
+    label: Field 5
+    category: Fields
+    dtype: string
+    hide: part
+-   id: field6
+    label: Field 6
+    category: Fields
+    dtype: string
+    hide: part
+-   id: field7
+    label: Field 7
+    category: Fields
+    dtype: string
+    hide: part
+-   id: field8
+    label: Field 8
+    category: Fields
+    dtype: string
+    hide: part
+-   id: field9
+    label: Field 9
+    category: Fields
+    dtype: string
+    hide: part
+-   id: field10
+    label: Field 10
+    category: Fields
+    dtype: string
+    hide: part
+-   id: field11
+    label: Field 11
+    category: Fields
+    dtype: string
+    hide: part
+-   id: field12
+    label: Field 12
+    category: Fields
+    dtype: string
+    hide: part
+-   id: field13
+    label: Field 13
+    category: Fields
+    dtype: string
+    hide: part
+-   id: field14
+    label: Field 14
+    category: Fields
+    dtype: string
+    hide: part
+-   id: field15
+    label: Field 15
+    category: Fields
+    dtype: string
+    hide: part
+-   id: field16
+    label: Field 16
+    category: Fields
+    dtype: string
+    hide: part
+-   id: field17
+    label: Field 17
+    category: Fields
+    dtype: string
+    hide: part
+-   id: field18
+    label: Field 18
+    category: Fields
+    dtype: string
+    hide: part
+-   id: field19
+    label: Field 19
+    category: Fields
+    dtype: string
+    hide: part
+-   id: value0
+    label: ${field0}
+    dtype: raw
+    default: '0'
+    hide: ${ 'none' if field0 else 'all' }
+-   id: value1
+    label: ${field1}
+    dtype: raw
+    default: '0'
+    hide: ${ 'none' if field1 else 'all' }
+-   id: value2
+    label: ${field2}
+    dtype: raw
+    default: '0'
+    hide: ${ 'none' if field2 else 'all' }
+-   id: value3
+    label: ${field3}
+    dtype: raw
+    default: '0'
+    hide: ${ 'none' if field3 else 'all' }
+-   id: value4
+    label: ${field4}
+    dtype: raw
+    default: '0'
+    hide: ${ 'none' if field4 else 'all' }
+-   id: value5
+    label: ${field5}
+    dtype: raw
+    default: '0'
+    hide: ${ 'none' if field5 else 'all' }
+-   id: value6
+    label: ${field6}
+    dtype: raw
+    default: '0'
+    hide: ${ 'none' if field6 else 'all' }
+-   id: value7
+    label: ${field7}
+    dtype: raw
+    default: '0'
+    hide: ${ 'none' if field7 else 'all' }
+-   id: value8
+    label: ${field8}
+    dtype: raw
+    default: '0'
+    hide: ${ 'none' if field8 else 'all' }
+-   id: value9
+    label: ${field9}
+    dtype: raw
+    default: '0'
+    hide: ${ 'none' if field9 else 'all' }
+-   id: value10
+    label: ${field10}
+    dtype: raw
+    default: '0'
+    hide: ${ 'none' if field10 else 'all' }
+-   id: value11
+    label: ${field11}
+    dtype: raw
+    default: '0'
+    hide: ${ 'none' if field11 else 'all' }
+-   id: value12
+    label: ${field12}
+    dtype: raw
+    default: '0'
+    hide: ${ 'none' if field12 else 'all' }
+-   id: value13
+    label: ${field13}
+    dtype: raw
+    default: '0'
+    hide: ${ 'none' if field13 else 'all' }
+-   id: value14
+    label: ${field14}
+    dtype: raw
+    default: '0'
+    hide: ${ 'none' if field14 else 'all' }
+-   id: value15
+    label: ${field15}
+    dtype: raw
+    default: '0'
+    hide: ${ 'none' if field15 else 'all' }
+-   id: value16
+    label: ${field16}
+    dtype: raw
+    default: '0'
+    hide: ${ 'none' if field16 else 'all' }
+-   id: value17
+    label: ${field17}
+    dtype: raw
+    default: '0'
+    hide: ${ 'none' if field17 else 'all' }
+-   id: value18
+    label: ${field18}
+    dtype: raw
+    default: '0'
+    hide: ${ 'none' if field18 else 'all' }
+-   id: value19
+    label: ${field19}
+    dtype: raw
+    default: '0'
+    hide: ${ 'none' if field19 else 'all' }
+value: ${value}
+
+asserts:
+- ${ (str(field0) or "a")[0].isalpha() }
+- ${ (str(field0) or "a").isalnum() }
+- ${ (str(field1) or "a")[0].isalpha() }
+- ${ (str(field1) or "a").isalnum() }
+- ${ (str(field2) or "a")[0].isalpha() }
+- ${ (str(field2) or "a").isalnum() }
+- ${ (str(field3) or "a")[0].isalpha() }
+- ${ (str(field3) or "a").isalnum() }
+- ${ (str(field4) or "a")[0].isalpha() }
+- ${ (str(field4) or "a").isalnum() }
+- ${ (str(field5) or "a")[0].isalpha() }
+- ${ (str(field5) or "a").isalnum() }
+- ${ (str(field6) or "a")[0].isalpha() }
+- ${ (str(field6) or "a").isalnum() }
+- ${ (str(field7) or "a")[0].isalpha() }
+- ${ (str(field7) or "a").isalnum() }
+- ${ (str(field8) or "a")[0].isalpha() }
+- ${ (str(field8) or "a").isalnum() }
+- ${ (str(field9) or "a")[0].isalpha() }
+- ${ (str(field9) or "a").isalnum() }
+- ${ (str(field10) or "a")[0].isalpha() }
+- ${ (str(field10) or "a").isalnum() }
+- ${ (str(field11) or "a")[0].isalpha() }
+- ${ (str(field11) or "a").isalnum() }
+- ${ (str(field12) or "a")[0].isalpha() }
+- ${ (str(field12) or "a").isalnum() }
+- ${ (str(field13) or "a")[0].isalpha() }
+- ${ (str(field13) or "a").isalnum() }
+- ${ (str(field14) or "a")[0].isalpha() }
+- ${ (str(field14) or "a").isalnum() }
+- ${ (str(field15) or "a")[0].isalpha() }
+- ${ (str(field15) or "a").isalnum() }
+- ${ (str(field16) or "a")[0].isalpha() }
+- ${ (str(field16) or "a").isalnum() }
+- ${ (str(field17) or "a")[0].isalpha() }
+- ${ (str(field17) or "a").isalnum() }
+- ${ (str(field18) or "a")[0].isalpha() }
+- ${ (str(field18) or "a").isalnum() }
+- ${ (str(field19) or "a")[0].isalpha() }
+- ${ (str(field19) or "a").isalnum() }
+
+templates:
+    imports: "def struct(data): return type('Struct', (object,), data)()"
+    var_make: |-
+        self.${id} = ${id} = struct({
+            % for i in range(20):
+            <%
+                field = context.get('field' + str(i))
+                value = context.get('value' + str(i))
+            %>
+            % if len(str(field)) > 2:
+            ${field}: ${value},
+            % endif
+            % endfor
+        })
+    var_value: |-
+        struct({
+            % for i in range(20):
+            <%
+                field = context.get('field' + str(i))
+            %>
+            % if len(str(field)) > 2:
+            ${field}: ${field},
+            % endif
+            % endfor
+        })
+
+documentation: |-
+    This is a simple struct/record like variable.
+
+    Attribute/field names can be specified in the tab 'Fields'.
+    For each non-empty field a parameter with type raw is shown.
+    Value access via the dot operator, e.g. "variable_struct_0.field0"
+
+file_format: 1
