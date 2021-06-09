@@ -1,0 +1,48 @@
+id: aep_uniform_linear_array
+label: Uniform Linear Array
+category: '[Adaptive Event Processing]'
+
+parameters:
+-   id: num_elements
+    label: Number of Apertures
+    dtype: int
+    default: 4
+-   id: sep_lambda
+    label: Separation of Elements in Wavelengths
+    dtype: float
+    default: 0.5
+-   id: angle_degrees
+    label: Angle (degrees)
+    dtype: float
+    default: 45.0
+
+
+inputs:
+-   domain: stream
+    dtype: complex
+    vlen: 1
+
+outputs:
+-   domain: stream
+    dtype: complex
+    vlen: ${num_elements}
+
+templates:
+    imports: import aep
+    make: aep.uniform_linear_array(${num_elements}, ${sep_lambda}, ${angle_degrees})
+
+documentation: |-
+    ######################################################
+    ######################################################
+    This block simulates a perfect Uniform Linear Array and is used for testing the AEP blocks by providing receiver streams of incoming data at a specified angle as a vector.
+
+    This block is part of a module for demonstrating Adaptive Event Processing as described in Forsythe, Keith W. "Utilizing waveform features for adaptive beamforming and direction finding with narrowband signals." Lincoln Laboratory Journal 10.2 (1997): 99-126.
+
+    An overview of the project can be seen here:
+    https://www.youtube.com/watch?v=gDGzc_4wcjM
+
+    This work was funded as part of the Perspecta Labs CASPER project. CASPER is an ongoing research project funded under the DARPA Leveraging the Analog Domain for Security program. The views, opinions and/or findings expressed are those of the author and should not be interpreted as representing the official views or policies of the Department of Defense or the U.S. Government.
+    ######################################################
+    ######################################################
+
+file_format: 1
