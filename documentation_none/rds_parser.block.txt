@@ -47,7 +47,16 @@ templates:
 documentation: |-
     ######################################################
     ######################################################
-    Add info here
+    Open rds_rx.grc example flow graph in GNU Radio Companion.
+
+    Quick example:
+    http://www.youtube.com/watch?v=05i9C5lhorY
+
+    HAK5 episode (including installation):
+    http://www.youtube.com/watch?v=ukhrIl4JHbw
+
+    FOSDEM'15 talk (video and slides):
+    https://archive.fosdem.org/2015/schedule/event/sdr_rds_tmc/
     ######################################################
     ######################################################
 

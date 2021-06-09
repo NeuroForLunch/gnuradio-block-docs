@@ -40,7 +40,7 @@ parameters:
   dtype: string
   options: ['', external, mimo, gpsdo]
   option_labels: [Default, External, MIMO Cable, O/B GPSDO]
-  hide: ${ 'all' if not (num_mboards > 0) else ( 'none' if time_source0 else 'part' )}  
+  hide: ${ 'all' if not (num_mboards > 0) else ( 'none' if time_source0 else 'part' )}
 - id: clock_source1
   label: 'MB1: Clock Source'
   dtype: string
@@ -52,7 +52,7 @@ parameters:
   dtype: string
   options: ['', external, mimo, gpsdo]
   option_labels: [Default, External, MIMO Cable, O/B GPSDO]
-  hide: ${ 'all' if not (num_mboards > 1) else ( 'none' if time_source1 else 'part' )}  
+  hide: ${ 'all' if not (num_mboards > 1) else ( 'none' if time_source1 else 'part' )}
 - id: clock_source2
   label: 'MB2: Clock Source'
   dtype: string
@@ -64,7 +64,7 @@ parameters:
   dtype: string
   options: ['', external, mimo, gpsdo]
   option_labels: [Default, External, MIMO Cable, O/B GPSDO]
-  hide: ${ 'all' if not (num_mboards > 2) else ( 'none' if time_source2 else 'part' )}  
+  hide: ${ 'all' if not (num_mboards > 2) else ( 'none' if time_source2 else 'part' )}
 - id: clock_source3
   label: 'MB3: Clock Source'
   dtype: string
@@ -76,7 +76,7 @@ parameters:
   dtype: string
   options: ['', external, mimo, gpsdo]
   option_labels: [Default, External, MIMO Cable, O/B GPSDO]
-  hide: ${ 'all' if not (num_mboards > 3) else ( 'none' if time_source3 else 'part' )}  
+  hide: ${ 'all' if not (num_mboards > 3) else ( 'none' if time_source3 else 'part' )}
 - id: clock_source4
   label: 'MB4: Clock Source'
   dtype: string
@@ -88,7 +88,7 @@ parameters:
   dtype: string
   options: ['', external, mimo, gpsdo]
   option_labels: [Default, External, MIMO Cable, O/B GPSDO]
-  hide: ${ 'all' if not (num_mboards > 4) else ( 'none' if time_source4 else 'part' )}  
+  hide: ${ 'all' if not (num_mboards > 4) else ( 'none' if time_source4 else 'part' )}
 - id: clock_source5
   label: 'MB5: Clock Source'
   dtype: string
@@ -100,7 +100,7 @@ parameters:
   dtype: string
   options: ['', external, mimo, gpsdo]
   option_labels: [Default, External, MIMO Cable, O/B GPSDO]
-  hide: ${ 'all' if not (num_mboards > 5) else ( 'none' if time_source5 else 'part' )}  
+  hide: ${ 'all' if not (num_mboards > 5) else ( 'none' if time_source5 else 'part' )}
 - id: clock_source6
   label: 'MB6: Clock Source'
   dtype: string
@@ -112,7 +112,7 @@ parameters:
   dtype: string
   options: ['', external, mimo, gpsdo]
   option_labels: [Default, External, MIMO Cable, O/B GPSDO]
-  hide: ${ 'all' if not (num_mboards > 6) else ( 'none' if time_source6 else 'part' )}  
+  hide: ${ 'all' if not (num_mboards > 6) else ( 'none' if time_source6 else 'part' )}
 - id: clock_source7
   label: 'MB7: Clock Source'
   dtype: string
@@ -124,7 +124,7 @@ parameters:
   dtype: string
   options: ['', external, mimo, gpsdo]
   option_labels: [Default, External, MIMO Cable, O/B GPSDO]
-  hide: ${ 'all' if not (num_mboards > 7) else ( 'none' if time_source7 else 'part' )}  
+  hide: ${ 'all' if not (num_mboards > 7) else ( 'none' if time_source7 else 'part' )}
 - id: nchan
   label: 'Number Channels'
   dtype: int
@@ -172,12 +172,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 0) else 'all'}
 - id: if_gain0
-  label: 'Ch0: IF Gain (dB)'
+  label: 'Ch0: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 0) else 'all'}
 - id: bb_gain0
-  label: 'Ch0: BB Gain (dB)'
+  label: 'Ch0: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 0) else 'all'}
@@ -229,12 +229,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 1) else 'all'}
 - id: if_gain1
-  label: 'Ch1: IF Gain (dB)'
+  label: 'Ch1: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 1) else 'all'}
 - id: bb_gain1
-  label: 'Ch1: BB Gain (dB)'
+  label: 'Ch1: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 1) else 'all'}
@@ -286,12 +286,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 2) else 'all'}
 - id: if_gain2
-  label: 'Ch2: IF Gain (dB)'
+  label: 'Ch2: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 2) else 'all'}
 - id: bb_gain2
-  label: 'Ch2: BB Gain (dB)'
+  label: 'Ch2: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 2) else 'all'}
@@ -343,12 +343,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 3) else 'all'}
 - id: if_gain3
-  label: 'Ch3: IF Gain (dB)'
+  label: 'Ch3: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 3) else 'all'}
 - id: bb_gain3
-  label: 'Ch3: BB Gain (dB)'
+  label: 'Ch3: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 3) else 'all'}
@@ -400,12 +400,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 4) else 'all'}
 - id: if_gain4
-  label: 'Ch4: IF Gain (dB)'
+  label: 'Ch4: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 4) else 'all'}
 - id: bb_gain4
-  label: 'Ch4: BB Gain (dB)'
+  label: 'Ch4: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 4) else 'all'}
@@ -457,12 +457,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 5) else 'all'}
 - id: if_gain5
-  label: 'Ch5: IF Gain (dB)'
+  label: 'Ch5: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 5) else 'all'}
 - id: bb_gain5
-  label: 'Ch5: BB Gain (dB)'
+  label: 'Ch5: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 5) else 'all'}
@@ -514,12 +514,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 6) else 'all'}
 - id: if_gain6
-  label: 'Ch6: IF Gain (dB)'
+  label: 'Ch6: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 6) else 'all'}
 - id: bb_gain6
-  label: 'Ch6: BB Gain (dB)'
+  label: 'Ch6: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 6) else 'all'}
@@ -571,12 +571,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 7) else 'all'}
 - id: if_gain7
-  label: 'Ch7: IF Gain (dB)'
+  label: 'Ch7: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 7) else 'all'}
 - id: bb_gain7
-  label: 'Ch7: BB Gain (dB)'
+  label: 'Ch7: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 7) else 'all'}
@@ -628,12 +628,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 8) else 'all'}
 - id: if_gain8
-  label: 'Ch8: IF Gain (dB)'
+  label: 'Ch8: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 8) else 'all'}
 - id: bb_gain8
-  label: 'Ch8: BB Gain (dB)'
+  label: 'Ch8: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 8) else 'all'}
@@ -685,12 +685,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 9) else 'all'}
 - id: if_gain9
-  label: 'Ch9: IF Gain (dB)'
+  label: 'Ch9: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 9) else 'all'}
 - id: bb_gain9
-  label: 'Ch9: BB Gain (dB)'
+  label: 'Ch9: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 9) else 'all'}
@@ -742,12 +742,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 10) else 'all'}
 - id: if_gain10
-  label: 'Ch10: IF Gain (dB)'
+  label: 'Ch10: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 10) else 'all'}
 - id: bb_gain10
-  label: 'Ch10: BB Gain (dB)'
+  label: 'Ch10: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 10) else 'all'}
@@ -799,12 +799,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 11) else 'all'}
 - id: if_gain11
-  label: 'Ch11: IF Gain (dB)'
+  label: 'Ch11: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 11) else 'all'}
 - id: bb_gain11
-  label: 'Ch11: BB Gain (dB)'
+  label: 'Ch11: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 11) else 'all'}
@@ -856,12 +856,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 12) else 'all'}
 - id: if_gain12
-  label: 'Ch12: IF Gain (dB)'
+  label: 'Ch12: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 12) else 'all'}
 - id: bb_gain12
-  label: 'Ch12: BB Gain (dB)'
+  label: 'Ch12: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 12) else 'all'}
@@ -913,12 +913,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 13) else 'all'}
 - id: if_gain13
-  label: 'Ch13: IF Gain (dB)'
+  label: 'Ch13: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 13) else 'all'}
 - id: bb_gain13
-  label: 'Ch13: BB Gain (dB)'
+  label: 'Ch13: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 13) else 'all'}
@@ -970,12 +970,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 14) else 'all'}
 - id: if_gain14
-  label: 'Ch14: IF Gain (dB)'
+  label: 'Ch14: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 14) else 'all'}
 - id: bb_gain14
-  label: 'Ch14: BB Gain (dB)'
+  label: 'Ch14: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 14) else 'all'}
@@ -1027,12 +1027,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 15) else 'all'}
 - id: if_gain15
-  label: 'Ch15: IF Gain (dB)'
+  label: 'Ch15: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 15) else 'all'}
 - id: bb_gain15
-  label: 'Ch15: BB Gain (dB)'
+  label: 'Ch15: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 15) else 'all'}
@@ -1084,12 +1084,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 16) else 'all'}
 - id: if_gain16
-  label: 'Ch16: IF Gain (dB)'
+  label: 'Ch16: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 16) else 'all'}
 - id: bb_gain16
-  label: 'Ch16: BB Gain (dB)'
+  label: 'Ch16: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 16) else 'all'}
@@ -1141,12 +1141,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 17) else 'all'}
 - id: if_gain17
-  label: 'Ch17: IF Gain (dB)'
+  label: 'Ch17: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 17) else 'all'}
 - id: bb_gain17
-  label: 'Ch17: BB Gain (dB)'
+  label: 'Ch17: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 17) else 'all'}
@@ -1198,12 +1198,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 18) else 'all'}
 - id: if_gain18
-  label: 'Ch18: IF Gain (dB)'
+  label: 'Ch18: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 18) else 'all'}
 - id: bb_gain18
-  label: 'Ch18: BB Gain (dB)'
+  label: 'Ch18: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 18) else 'all'}
@@ -1255,12 +1255,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 19) else 'all'}
 - id: if_gain19
-  label: 'Ch19: IF Gain (dB)'
+  label: 'Ch19: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 19) else 'all'}
 - id: bb_gain19
-  label: 'Ch19: BB Gain (dB)'
+  label: 'Ch19: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 19) else 'all'}
@@ -1312,12 +1312,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 20) else 'all'}
 - id: if_gain20
-  label: 'Ch20: IF Gain (dB)'
+  label: 'Ch20: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 20) else 'all'}
 - id: bb_gain20
-  label: 'Ch20: BB Gain (dB)'
+  label: 'Ch20: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 20) else 'all'}
@@ -1369,12 +1369,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 21) else 'all'}
 - id: if_gain21
-  label: 'Ch21: IF Gain (dB)'
+  label: 'Ch21: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 21) else 'all'}
 - id: bb_gain21
-  label: 'Ch21: BB Gain (dB)'
+  label: 'Ch21: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 21) else 'all'}
@@ -1426,12 +1426,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 22) else 'all'}
 - id: if_gain22
-  label: 'Ch22: IF Gain (dB)'
+  label: 'Ch22: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 22) else 'all'}
 - id: bb_gain22
-  label: 'Ch22: BB Gain (dB)'
+  label: 'Ch22: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 22) else 'all'}
@@ -1483,12 +1483,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 23) else 'all'}
 - id: if_gain23
-  label: 'Ch23: IF Gain (dB)'
+  label: 'Ch23: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 23) else 'all'}
 - id: bb_gain23
-  label: 'Ch23: BB Gain (dB)'
+  label: 'Ch23: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 23) else 'all'}
@@ -1540,12 +1540,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 24) else 'all'}
 - id: if_gain24
-  label: 'Ch24: IF Gain (dB)'
+  label: 'Ch24: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 24) else 'all'}
 - id: bb_gain24
-  label: 'Ch24: BB Gain (dB)'
+  label: 'Ch24: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 24) else 'all'}
@@ -1597,12 +1597,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 25) else 'all'}
 - id: if_gain25
-  label: 'Ch25: IF Gain (dB)'
+  label: 'Ch25: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 25) else 'all'}
 - id: bb_gain25
-  label: 'Ch25: BB Gain (dB)'
+  label: 'Ch25: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 25) else 'all'}
@@ -1654,12 +1654,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 26) else 'all'}
 - id: if_gain26
-  label: 'Ch26: IF Gain (dB)'
+  label: 'Ch26: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 26) else 'all'}
 - id: bb_gain26
-  label: 'Ch26: BB Gain (dB)'
+  label: 'Ch26: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 26) else 'all'}
@@ -1711,12 +1711,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 27) else 'all'}
 - id: if_gain27
-  label: 'Ch27: IF Gain (dB)'
+  label: 'Ch27: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 27) else 'all'}
 - id: bb_gain27
-  label: 'Ch27: BB Gain (dB)'
+  label: 'Ch27: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 27) else 'all'}
@@ -1768,12 +1768,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 28) else 'all'}
 - id: if_gain28
-  label: 'Ch28: IF Gain (dB)'
+  label: 'Ch28: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 28) else 'all'}
 - id: bb_gain28
-  label: 'Ch28: BB Gain (dB)'
+  label: 'Ch28: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 28) else 'all'}
@@ -1825,12 +1825,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 29) else 'all'}
 - id: if_gain29
-  label: 'Ch29: IF Gain (dB)'
+  label: 'Ch29: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 29) else 'all'}
 - id: bb_gain29
-  label: 'Ch29: BB Gain (dB)'
+  label: 'Ch29: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 29) else 'all'}
@@ -1882,12 +1882,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 30) else 'all'}
 - id: if_gain30
-  label: 'Ch30: IF Gain (dB)'
+  label: 'Ch30: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 30) else 'all'}
 - id: bb_gain30
-  label: 'Ch30: BB Gain (dB)'
+  label: 'Ch30: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 30) else 'all'}
@@ -1939,12 +1939,12 @@ parameters:
   default: 10
   hide: ${'none' if (nchan > 31) else 'all'}
 - id: if_gain31
-  label: 'Ch31: IF Gain (dB)'
+  label: 'Ch31: Intermediate Frequency Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 31) else 'all'}
 - id: bb_gain31
-  label: 'Ch31: BB Gain (dB)'
+  label: 'Ch31: Baseband Gain (dB)'
   dtype: real
   default: 20
   hide: ${'none' if (nchan > 31) else 'all'}
@@ -2818,7 +2818,7 @@ documentation: |-
   Frequency:
   The center frequency is the frequency the RF chain is tuned to.
 
-  Freq. Corr.:
+  Frequency Correction:
   The frequency correction factor in parts per million (ppm). Set to 0 if unknown.
 
   DC Offset Mode:
@@ -2839,17 +2839,17 @@ documentation: |-
 
   Gain Mode:
   Chooses between the manual (default) and automatic gain mode where appropriate.
-  To allow manual control of RF/IF/BB gain stages, manual gain mode must be configured.
+  To allow manual control of RF/IF/Baseband Gain stages, manual gain mode must be configured.
   Currently, only RTL-SDR devices support automatic gain mode.
 
   RF Gain:
   Overall RF gain of the device.
 
-  IF Gain:
+  Intermediate Frequency Gain:
   Overall intermediate frequency gain of the device.
   This setting is available for RTL-SDR and OsmoSDR devices with E4000 tuners and HackRF in receive and transmit mode. Observations lead to a reasonable gain range from 15 to 30dB.
 
-  BB Gain:
+  Baseband Gain:
   Overall baseband gain of the device.
   This setting is available for HackRF in receive mode. Observations lead to a reasonable gain range from 15 to 30dB.
 
@@ -2864,7 +2864,7 @@ documentation: |-
   http://sdr.osmocom.org/trac/wiki/GrOsmoSDR
   http://sdr.osmocom.org/trac/wiki/rtl-sdr
   http://sdr.osmocom.org/trac/
-  
+
     ######################################################
     ######################################################
 

@@ -17,7 +17,7 @@ parameters:
             "'short'","'byte'","'message'"]
     hide: part
 -   id: vlen
-    label: Vec Length
+    label: Vector Length
     dtype: int
     default: '1'
     hide: ${ ('all' if type == 'message' else 'part') }
