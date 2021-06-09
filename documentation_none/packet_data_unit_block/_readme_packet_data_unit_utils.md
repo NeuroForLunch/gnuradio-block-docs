@@ -1,8 +1,5 @@
-![snl](_sandia_figures/snl.png "Sandia National Laboratories")
 
-## GNU Radio PDU Utilities
-
-This GNU Radio module contains tools for manipulation of PDU objects. There are blocks to translate between streams and PDUs while maintaining timing information, a number of self-explanatory blocks that emulate the behavior of some in-tree stream blocks for messages and PDUs, and some other features. This module is complimentary to the gr-timing_utils module and some of the advanced timing features require blocks there.
+This GNU Radio module contains tools for manipulation of Packet Data Unit objects. There are blocks to translate between streams and PDUs while maintaining timing information, a number of self-explanatory blocks that emulate the behavior of some in-tree stream blocks for messages and PDUs, and some other features. This module is complimentary to the gr-timing_utils module and some of the advanced timing features require blocks there.
 
 All blocks are written in C++, and make use of the GR_LOG API, there is no stdout output; there is minimal PMT symbol interning at runtime, and blocks should be thread safe. QA code exists for most blocks, and when bugs are fixed QA is updated to catch the errors. The general concept of this module, and usage for some of the more unique blocks are described in this document.
 
@@ -124,37 +121,3 @@ __Summary:__ This block is a direct analog to the in-tree PFB Arbitrary Resample
 __Summary:__ The GNU Radio Asynchronous Message Passing API has no concept of flow control or backpressure. A slow block in the processing chain will cause an unbounded backup of messages which can in turn result in software failures as messages are never dropped, and the publish method does not block.
 
 This block will check the message queue size for subscribed blocks, and it will drop messages over a configurable maximum queue size. Dropping data is not always preferred, so this should only be used in situations where data loss is acceptable.
-
-## Blocks Marked for Upstreaming
-
-Several blocks in this module are very general in nature and have been marked for upstreaming pending resolution of some process and software organization factors:
-
-1. Message Counter
-
-1. Message Emitter
-
-1. Message Gate
-
-1. Message Keep 1-in-N
-
-1. Pack Unpack
-
-1. PDU Align
-
-1. PDU Binary Tools
-
-1. PDU Clock Recovery
-
-1. PDU Complex to Mag^2
-
-1. PDU FIR Filter
-
-1. PDU GMSK (rename to PDU FM Modulator)
-
-1. PDU Logger
-
-1. PDU PFB Resampler
-
-1. PDU Quadrature Demod
-
-1. PDU Split

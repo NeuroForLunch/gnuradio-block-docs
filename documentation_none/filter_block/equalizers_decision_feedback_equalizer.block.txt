@@ -12,7 +12,7 @@ parameters:
     label: Num. Taps (Forward)
     dtype: int
     default: 5
--   id: num_taps_rev 
+-   id: num_taps_rev
     label: Num. Taps (Feedback)
     dtype: int
     default: 3
@@ -57,12 +57,32 @@ outputs:
     dtype: short
     optional: true
 
-#  'file_format' specifies the version of the GRC yml format used in the file
-#  and should usually not be changed.
 documentation: |-
     ######################################################
     ######################################################
-    Add info here
+    This module is intended to extend the equalizer functionality of gnuradio by the following:
+    - Add data-aided training sequence based adaptive filtering
+    - Generalize the equalizer structures and separate from the underlying adaptive algorithm such that new algorithms can be implemented without creating duplicate blocks
+    - Other general performance improvements
+
+    It is based heavily on the code of the gnuradio LMS and CMA decision directed equalizers
+
+    ## Modes of Operation
+
+    The linear/decision-feedback equalizer blocks operate in 3 states:
+
+    1. IDLE
+        - Apply the current taps to the incoming signal with no updating to the current taps
+    2. TRAINING
+        - Adapt the filter according to a specified training sequence that lines up with a tag in the incoming stream
+    3. Decision Directed (DD)
+        - Perform decision directed adaptation based on the expected constellation of the signal
+
+    If a training sequence and training start tag are given, then the equalizer will begin adapting the filter at the sample corresponding to the specified tag as it is received.
+
+    If the adapt_after_training flag is set, then the equalizer will continue adapting according to the specified constellation after the training sequence has passed
+
+    If no training sequence or no tag is specified, then the equalizer will operate in Decision Directed mode (as in current GNU Radio equalizers)
     ######################################################
     ######################################################
 

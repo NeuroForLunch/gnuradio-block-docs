@@ -1,19 +1,21 @@
-id: inspector_signal_detector_cvf
-label: Signal Detector
+id: inspector_signal_separator_c
+label: Signal Separator
 category: '[Inspector]/Conditioning'
 
 templates:
-  imports: import inspector
-  make: inspector.signal_detector_cvf(${samp_rate}, ${fft_len}, ${window}, ${threshold}, ${sensitivity}, ${auto}, ${avg}, ${quant}, ${min_bw}, ${logfile})
+  imports: |-
+    import inspector
+    from gnuradio.filter import firdes
+    import json
+  make: |-
+    inspector.signal_separator_c(${samp_rate}, ${window}, ${trans_width}, ${oversample}, ${file}, inspector.map_float_vector({float(k):v for k,v in json.loads(open(${taps_file}).read())})) \
+    if ${file} else \
+    inspector.signal_separator_c(${samp_rate}, ${window}, ${trans_width}, ${oversample}, ${file}, inspector.map_float_vector({0.0:[0.0]}))
   callbacks:
-  - set_fft_len(${fft_len})
-  - set_window_type(${window})
   - set_samp_rate(${samp_rate})
-  - set_sensitivity(${sensitivity})
-  - set_auto_threshold({$auto})
-  - set_average({$avg})
-  - set_quantization({$quant})
-  - set_threshold(${threshold})
+  - set_window(${window})
+  - set_trans_width(${trans_width})
+  - set oversampling(${oversample})
 
 #  Make one 'parameters' list entry for every Parameter you want settable from the GUI.
 #     Sub-entries of dictionary:
@@ -22,51 +24,29 @@ templates:
 #     * dtype
 parameters:
 - id: samp_rate
-  label: Samp rate
+  label: Sample rate
   dtype: real
-- id: fft_len
-  label: FFT length
-  dtype: int
-  default: 1024
+- id: trans_width
+  label: Transition width/cutoff
+  dtype: real
 - id: window
   label: Window
   dtype: enum
   options: [firdes.WIN_BLACKMAN_hARRIS, firdes.WIN_HAMMING, firdes.WIN_HANN, firdes.WIN_BLACKMAN, firdes.WIN_RECTANGULAR, firdes.WIN_KAISER, firdes.WIN_FLATTOP]
   option_labels: ['Blackman-Harris', 'Hamming', 'Hann', 'Blackman', 'Rectangular', 'Kaiser', 'Flat-top']
   default: firdes.WIN_BLACKMAN_hARRIS
-- id: auto
-  label: Auto threshold
+- id: oversample
+  label: Oversampling
+  dtype: real
+- id: file
+  label: Use Taps file
   dtype: bool
   default: True
-- id: threshold
-  label: Threshold (dB)
-  dtype: float
-  default: 0.7
-  hide: ${('all' if auto else 'none')}
-- id: sensitivity
-  label: Sensitivity (0-1)
-  dtype: float
-  default: 0.2
-  hide: ${('none' if auto else 'all')}
-- id: avg
-  label: Average IIR alpha
-  dtype: real
-  default: 0.8
-- id: quant
-  label: Rel. quantization
-  dtype: real
-  value: 0.0001
-  hide: 'part'
-- id: min_bw
-  label: Min Sig BW
-  dtype: real
-  default: 0
-  hide: 'part'
-- id: logfile
-  label: Logfile
-  dtype: file_save
+- id: taps_file
+  label: Taps file
   default: ''
-  hide: 'part'
+  dtype: file_open
+  hide: ${('none' if file else 'all')}
 
 #  Make one 'inputs' list entry per input. Sub-entries of dictionary:
 #      * label (an identifier for the GUI)
@@ -78,6 +58,8 @@ inputs:
 - label: in
   domain: stream
   dtype: complex
+- label: map_in
+  domain: message
 
 #  Make one 'outputs' list entry per output. Sub-entries of dictionary:
 #      * label (an identifier for the GUI)
@@ -85,19 +67,13 @@ inputs:
 #      * vlen
 #      * optional (set to 1 for optional inputs)
 outputs:
-- label: out
-  domain: stream
-  dtype: float
-  vlen: ${fft_len}
-  optional: true
-- label: map_out
+- label: sig_out
   domain: message
-  optional: true
 
 documentation: |-
     ######################################################
     ######################################################
-    Add info here
+    Takes the signal info from the previous blocks and performs a down-mixing, filtering and decimation of each detected signal. The samples for each signal are passed on as a message.
     ######################################################
     ######################################################
 

@@ -13,22 +13,22 @@ templates:
 #     * dtype
 parameters:
 - id: samp_rate
-  label: Sample rate
+  label: Sample Rate
   dtype: real
 - id: signal
-  label: Signal No
+  label: Signal Number
   dtype: int
   default: 0
 - id: min_items
-  label: Min input items
+  label: Minimum input items
   dtype: int
   default: 7000
 - id: alpha
-  label: FFT lengths
+  label: FFT Lengths
   dtype: int_vector
   default: [16, 32, 64, 128, 256, 512, 1024]
 - id: beta
-  label: CP lengths
+  label: Cyclic Prefix Lengths
   dtype: int_vector
   default: [4, 8, 16, 32]
 
@@ -55,7 +55,7 @@ outputs:
 documentation: |-
     ######################################################
     ######################################################
-    Add info here
+    Estimates the parameters subcarrier spacing, symbol time, FFT size and cyclic prefix length for a input signal. The signal should not be oversampled for this block.
     ######################################################
     ######################################################
 

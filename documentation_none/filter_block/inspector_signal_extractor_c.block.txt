@@ -1,10 +1,12 @@
-id: inspector_ofdm_synchronizer_cc
-label: OFDM Synchronizer
+id: inspector_signal_extractor_c
+label: Signal Extractor
 category: '[Inspector]/Conditioning'
 
 templates:
   imports: import inspector
-  make: inspector.ofdm_synchronizer_cc(${min_items})
+  make: inspector.signal_extractor_c(${signal}, ${resample}, ${rate}, ${osf})
+  callbacks:
+  - set_signal(${signal})
 
 #  Make one 'parameters' list entry for every Parameter you want settable from the GUI.
 #     Sub-entries of dictionary:
@@ -12,10 +14,25 @@ templates:
 #     * label
 #     * dtype
 parameters:
-- id: min_items
-  label: Min input items
-  default: 4096
+- id: signal
+  label: Signal
   dtype: int
+- id: resample
+  label: Resample signal
+  dtype: bool
+  default: False
+  options: [True, False]
+  option_labels: ['On', 'Off']
+- id: rate
+  label: Output Sample Rate
+  dtype: real
+  default: 48000
+  hide: ${('none' if resample else 'all')}
+- id: osf
+  label: Oversampling
+  dtype: real
+  default: 1
+  hide: ${('none' if resample else 'all')}
 
 #  Make one 'inputs' list entry per input. Sub-entries of dictionary:
 #      * label (an identifier for the GUI)
@@ -24,9 +41,7 @@ parameters:
 #      * vlen
 #      * optional (set to 1 for optional inputs)
 inputs:
-- domain: stream
-  dtype: complex
-- label: ofdm_in
+- label: sig_in
   domain: message
 
 #  Make one 'outputs' list entry per output. Sub-entries of dictionary:
@@ -35,13 +50,16 @@ inputs:
 #      * vlen
 #      * optional (set to 1 for optional inputs)
 outputs:
-- domain: stream
+- label: out
+  domain: stream
   dtype: complex
 
 documentation: |-
     ######################################################
     ######################################################
-    Add info here
+    Adapter block to extract the samples of one signal out of the messages from the Signal Separator. Output is again a complex stream.
+
+    Resampling can be used to assure a constant output sample rate of the stream. (Needed for FM demod for instance.)
     ######################################################
     ######################################################
 

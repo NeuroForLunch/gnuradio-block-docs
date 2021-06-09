@@ -35,10 +35,10 @@ parameters:
     default: 10.0
     hide: ${ ( 'none' if str(type) == "rls" else 'all') }
 
-# value: ${equalizers.adaptive_algorithm_lms(num_taps, adapt_after_training, initial_taps, training_sequence, cons, step_size)}  
+# value: ${equalizers.adaptive_algorithm_lms(num_taps, adapt_after_training, initial_taps, training_sequence, cons, step_size)}
 # In gr-digital constellation.block.yml, constellation.value returns the derived class - pass the base class
-# value: ${ (equalizers.adaptive_algorithm_lms(cons.base(), step_size)) if str(type) == 'lms' else (equalizers.adaptive_algorithm_cma(cons.base(), step_size, modulus)) if str(type) == 'cma' else  (equalizers.adaptive_algorithm_rls(cons.base(), lambda, delta)) }  
-value: |- 
+# value: ${ (equalizers.adaptive_algorithm_lms(cons.base(), step_size)) if str(type) == 'lms' else (equalizers.adaptive_algorithm_cma(cons.base(), step_size, modulus)) if str(type) == 'cma' else  (equalizers.adaptive_algorithm_rls(cons.base(), lambda, delta)) }
+value: |-
     ${ (equalizers.adaptive_algorithm_lms(cons.base(), step_size))  }
 
 templates:
@@ -57,7 +57,29 @@ templates:
 documentation: |-
     ######################################################
     ######################################################
-    Add info here
+    This module is intended to extend the equalizer functionality of gnuradio by the following:
+    - Add data-aided training sequence based adaptive filtering
+    - Generalize the equalizer structures and separate from the underlying adaptive algorithm such that new algorithms can be implemented without creating duplicate blocks
+    - Other general performance improvements
+
+    It is based heavily on the code of the gnuradio LMS and CMA decision directed equalizers
+
+    ## Modes of Operation
+
+    The linear/decision-feedback equalizer blocks operate in 3 states:
+
+    1. IDLE
+        - Apply the current taps to the incoming signal with no updating to the current taps
+    2. TRAINING
+        - Adapt the filter according to a specified training sequence that lines up with a tag in the incoming stream
+    3. Decision Directed (DD)
+        - Perform decision directed adaptation based on the expected constellation of the signal
+
+    If a training sequence and training start tag are given, then the equalizer will begin adapting the filter at the sample corresponding to the specified tag as it is received.
+
+    If the adapt_after_training flag is set, then the equalizer will continue adapting according to the specified constellation after the training sequence has passed
+
+    If no training sequence or no tag is specified, then the equalizer will operate in Decision Directed mode (as in current GNU Radio equalizers)
     ######################################################
     ######################################################
 
