@@ -12,7 +12,7 @@ parameters:
     dtype: int
     default: 64
 -   id: nmem
-    label: Nmem Time Window Size
+    label: Time Window Number of Elements
     dtype: int
     default: 4
 -   id: thresh
@@ -40,7 +40,7 @@ templates:
 documentation: |-
     ######################################################
     ######################################################
-    The AEP Metric block calculates the AEP metric across each subcarrier over the time window nmem, and passes on the calculated eigenvectors when a threshold is surpassed.
+    The AEP Metric block calculates the AEP metric across each subcarrier over the time window number of elements (nmem), and passes on the calculated eigenvectors when a threshold is surpassed.
 
     This block is part of a module for demonstrating Adaptive Event Processing as described in Forsythe, Keith W. "Utilizing waveform features for adaptive beamforming and direction finding with narrowband signals." Lincoln Laboratory Journal 10.2 (1997): 99-126.
 
