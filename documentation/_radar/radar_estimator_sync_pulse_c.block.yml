@@ -35,6 +35,19 @@ templates:
 documentation: |-
     ######################################################
     ######################################################
+    Radar cross-section (RCS) is a measure of how detectable an object is by radar. Therefore, it is called electromagnetic signature of the object. A larger RCS indicates that an object is more easily detected.
+
+    An object reflects a limited amount of radar energy back to the source. The factors that influence this include:[1]
+
+    the material of which the target is made;
+    the size of the target relative to the wavelength of the illuminating radar signal;
+    the absolute size of the target;
+    the incident angle (angle at which the radar beam hits a particular portion of the target, which depends upon the shape of the target and its orientation to the radar source);
+    the reflected angle (angle at which the reflected beam leaves the part of the target hit; it depends upon incident angle);
+    the polarization of the transmitted and the received radiation with respect to the orientation of the target.
+    While important in detecting targets, strength of emitter and distance are not factors that affect the calculation of an RCS because RCS is a property of the target's reflectivity.
+
+
     ## Basics of Radar
     The basic flowgraph for many radar applications: first a signal is generated and sent and received with some hardware.
     TX and RX signal are compared with an estimator and the result is displayed on the screen.
