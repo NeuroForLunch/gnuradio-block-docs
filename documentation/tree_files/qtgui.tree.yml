@@ -1,6 +1,6 @@
 '[Core]':
-- Instrumentation:
-  - QT:
+- Sinks:
+  - GUI:
     - qtgui_freq_sink_x
     - qtgui_time_sink_x
     - qtgui_const_sink_x
@@ -11,8 +11,7 @@
     - qtgui_number_sink
     - qtgui_vector_sink_f
     - qtgui_sink_x
-- GUI Widgets:
-  - QT:
+  - GUI Widgets:
     - qtgui_tab_widget
     - variable_qtgui_range
     - variable_qtgui_chooser

@@ -1,0 +1,76 @@
+id: analog_ctcss_squelch_ff
+label: Continuous Tone-Coded Squelch System
+flags: [ python, cpp ]
+
+parameters:
+-   id: rate
+    label: Sampling Rate (Hz)
+    dtype: real
+    default: samp_rate
+-   id: freq
+    label: Tone Frequency
+    dtype: real
+    default: '100.0'
+-   id: level
+    label: Level
+    dtype: real
+    default: '0.01'
+-   id: len
+    label: Length
+    dtype: int
+    default: '0'
+-   id: ramp
+    label: Ramp
+    dtype: int
+    default: '0'
+-   id: gate
+    label: Gate
+    dtype: bool
+    default: 'False'
+
+inputs:
+-   domain: stream
+    dtype: float
+
+outputs:
+-   domain: stream
+    dtype: float
+
+templates:
+    imports: from gnuradio import analog
+    make: analog.ctcss_squelch_ff(${rate}, ${freq}, ${level}, ${len}, ${ramp}, ${gate})
+    callbacks:
+    - set_level(${level})
+    - set_frequency(${freq})
+
+cpp_templates:
+    includes: ['#include <gnuradio/analog/ctcss_squelch_ff.h>']
+    make: 'this->${id} = analog::ctcss_squelch_ff::make(${rate}, ${freq}, ${level}, ${len}, ${ramp}, ${gate});'
+    callbacks:
+    - set_level(${level})
+    - set_frequency(${freq})
+    link: ['gnuradio-analog']
+    translations:
+        'True': 'true'
+        'False': 'false'
+
+documentation: |-
+    ######################################################
+    ######################################################
+    Continuous Tone-Coded Squelch System or CTCSS is one type of in-band signaling that is used to reduce the annoyance of listening to other users on a shared two-way radio communications channel. It is sometimes referred to as tone squelch. It does this by adding a low frequency audio tone to the voice. Where more than one group of users is on the same radio frequency (called co-channel users), CTCSS circuitry mutes those users who are using a different CTCSS tone or no CTCSS. It is sometimes referred to as a sub-channel, but this is a misnomer because no additional channels are created. All users with different CTCSS tones on the same channel are still transmitting on the identical radio frequency, and their transmissions interfere with each other; however; the interference is masked under most, but not all, conditions.
+
+    Tone Frequency: CTCSS tones commonly range from 67 to 257 Hz and are usually referred to as sub-audible tones.
+
+    Level: ???
+
+    Length: ???
+
+    Gate: ???
+
+    The CTCSS feature does not offer any security.
+
+    https://en.wikipedia.org/wiki/Continuous_Tone-Coded_Squelch_System
+    ######################################################
+    ######################################################
+
+file_format: 1

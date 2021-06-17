@@ -1,21 +1,23 @@
 '[Core]':
-- Misc:
-  - pad_source
-  - pad_sink
-  - virtual_source
-  - virtual_sink
-  - bus_sink
-  - bus_source
-  - bus_structure_sink
-  - bus_structure_source
+- aCommon:
   - epy_block
   - epy_module
   - note
   - import
-  - snippet 
+  - snippet
 - Variables:
   - variable
   - variable_struct
   - variable_config
   - variable_function_probe
   - parameter
+- Sources:
+  - pad_source
+  - virtual_source
+  - bus_source
+  - bus_structure_source
+- Sinks:
+  - bus_structure_sink
+  - bus_sink
+  - virtual_sink
+  - pad_sink

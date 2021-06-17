@@ -1,0 +1,23 @@
+id: vocoder_ulaw_decode_bs
+label: ulaw Audio Decoder
+
+inputs:
+-   domain: stream
+    dtype: byte
+
+outputs:
+-   domain: stream
+    dtype: short
+
+templates:
+    imports: from gnuradio import vocoder
+    make: vocoder.ulaw_decode_bs()
+
+documentation: |-
+    ######################################################
+    ######################################################
+    Add info here
+    ######################################################
+    ######################################################
+
+file_format: 1

@@ -1,0 +1,101 @@
+id: analog_agc3_xx
+label: AGC +A+D+ IIR Update Decimation
+flags: [ python, cpp ]
+
+parameters:
+-   id: type
+    label: Type
+    dtype: enum
+    options: [complex]
+    option_attributes:
+        fcn: [cc]
+    hide: part
+-   id: attack_rate
+    label: Attack Rate (s)
+    dtype: real
+    default: 1e-3
+-   id: decay_rate
+    label: Decay Rate (s)
+    dtype: real
+    default: 1e-4
+-   id: reference
+    label: Reference
+    dtype: real
+    default: '1.0'
+-   id: gain
+    label: Gain
+    dtype: real
+    default: '1.0'
+-   id: max_gain
+    label: Max Gain
+    dtype: real
+    default: '65536'
+-   id: iir_update_decim
+    label: IIR Update Decimation
+    dtype: real
+    default: '1'
+
+inputs:
+-   domain: stream
+    dtype: ${ type }
+
+outputs:
+-   domain: stream
+    dtype: ${ type }
+
+templates:
+    imports: from gnuradio import analog
+    make: |-
+        analog.agc3_${type.fcn}(${attack_rate}, ${decay_rate}, ${reference}, ${gain}, ${iir_update_decim})
+        self.${id}.set_max_gain(${max_gain})
+    callbacks:
+    - set_attack_rate(${attack_rate})
+    - set_decay_rate(${decay_rate})
+    - set_reference(${reference})
+    - set_gain(${gain})
+    - set_max_gain(${max_gain})
+
+cpp_templates:
+    includes: ['#include <gnuradio/analog/agc3_${type.fcn}.h>']
+    declarations: 'analog::agc3_${type.fcn}::sptr ${id};'
+    make: |-
+        this->${id} = analog::agc3_${type.fcn}::make(${attack_rate}, ${decay_rate}, ${reference}, ${gain}, ${iir_update_decim});
+        this->${id}->set_max_gain(${max_gain});
+    callbacks:
+    - set_attack_rate(${attack_rate})
+    - set_decay_rate(${decay_rate})
+    - set_reference(${reference})
+    - set_gain(${gain})
+    - set_max_gain(${max_gain})
+    link: ['gnuradio-analog']
+
+documentation: |-
+    ######################################################
+    ######################################################
+    Automatic gain control (AGC), is a closed-loop feedback regulating circuit in an amplifier or chain of amplifiers, the purpose of which is to maintain a suitable signal amplitude at its output, despite variation of the signal amplitude at the input.
+
+    Without AGC, an AM radio would have a linear relationship between the signal amplitude and the sound waveform – the sound amplitude, which correlates with loudness, is proportional to the radio signal amplitude, because the information content of the signal is carried by the changes of amplitude of the carrier wave. If the circuit were not fairly linear, the modulated signal could not be recovered with reasonable fidelity. However, the strength of the signal received will vary widely, depending on the power and distance of the transmitter, and signal path attenuation. The AGC circuit keeps the receiver's output level from fluctuating too much by detecting the overall strength of the signal and automatically adjusting the gain of the receiver to maintain the output level within an acceptable range. For a very weak signal, the AGC operates the receiver at maximum gain; as the signal increases, the AGC reduces the gain.
+
+    As in all automatic control systems, the temporal dynamics of AGC operation may be important in many applications. Some AGC systems are slow to react to the need for gain changes, while others may react very rapidly. An example of an application in which fast AGC recovery time is required is in receivers used in Morse code communications where so-called full break-in or QSK operation is necessary to enable receiving stations to interrupt sending stations mid-character (e.g. between dot and dash signals).
+
+    A related application of AGC is in radar systems, as a method of overcoming unwanted clutter echoes. This method relies on the fact that clutter returns far outnumber echoes from targets of interest. The receiver's gain is automatically adjusted to maintain a constant level of overall visible clutter. While this does not help detect targets masked by stronger surrounding clutter, it does help to distinguish strong target sources. In the past, radar AGC was electronically controlled and affected the gain of the entire radar receiver. As radars evolved, AGC became computer-software controlled, and affected the gain with greater granularity, in specific detection cells. Many radar countermeasures use a radar's AGC to fool it, by effectively "drowning out" the real signal with the spoof, as the AGC will regard the weaker, true signal as clutter relative to the strong spoof.
+
+
+    Attack rate is the time taken for initial run-up of level from nil to peak, beginning when the key is pressed.
+
+    Decay rate is the time taken for the subsequent run down from the attack level to the designated sustain level.
+
+    Reference: ???
+
+    Gain is the lowest gain.
+
+    Max gain is the highest gain with a 16 bit limit which equals 65536.
+
+    Infinite Impulse Response Update Decimation
+
+    https://en.wikipedia.org/wiki/Automatic_gain_control
+    https://en.wikipedia.org/wiki/Envelope_(music)
+    ######################################################
+    ######################################################
+
+file_format: 1

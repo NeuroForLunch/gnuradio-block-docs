@@ -1,0 +1,24 @@
+id: vocoder_gsm_fr_decode_ps
+label: GSM full-rate Audio Decoder
+
+inputs:
+-   domain: stream
+    dtype: byte
+    vlen: 33
+
+outputs:
+-   domain: stream
+    dtype: short
+
+templates:
+    imports: from gnuradio import vocoder
+    make: vocoder.gsm_fr_decode_ps()
+
+documentation: |-
+    ######################################################
+    ######################################################
+    Add info here
+    ######################################################
+    ######################################################
+
+file_format: 1

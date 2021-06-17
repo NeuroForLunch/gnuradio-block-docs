@@ -1,0 +1,2888 @@
+id: osmosdr_source
+label: 'Osmocom Source'
+category: '[Core]/Sources'
+flags: throttle
+
+parameters:
+- id: type
+  label: 'Output Type'
+  dtype: enum
+  options: [fc32]
+  option_labels: [Complex Float32]
+  option_attributes:
+      type: [fc32]
+  hide: part
+- id: args
+  label: 'Device Arguments'
+  dtype: string
+  default: '""'
+  hide: ${ 'none' if args else 'part'}
+- id: sync
+  label: Sync
+  dtype: enum
+  options: [sync, pc_clock, none]
+  option_labels: [Unknown PPS, PC Clock, Don't Sync]
+  hide: ${ 'none' if sync else 'part'}
+- id: num_mboards
+  label: 'Number MBoards'
+  dtype: int
+  default: 1
+  options: [ 1, 2, 3, 4, 5, 6, 7, 8 ]
+  hide: part
+- id: clock_source0
+  label: 'MB0: Clock Source'
+  dtype: string
+  options: ['', internal, external, external_1pps, mimo, gpsdo]
+  option_labels: [Default, Internal, External, External 1PPS, MIMO Cable, O/B GPSDO]
+  hide: ${ 'all' if not (num_mboards > 0) else ( 'none' if clock_source0 else 'part' )}
+- id: time_source0
+  label: 'MB0: Time Source'
+  dtype: string
+  options: ['', external, mimo, gpsdo]
+  option_labels: [Default, External, MIMO Cable, O/B GPSDO]
+  hide: ${ 'all' if not (num_mboards > 0) else ( 'none' if time_source0 else 'part' )}
+- id: clock_source1
+  label: 'MB1: Clock Source'
+  dtype: string
+  options: ['', internal, external, external_1pps, mimo, gpsdo]
+  option_labels: [Default, Internal, External, External 1PPS, MIMO Cable, O/B GPSDO]
+  hide: ${ 'all' if not (num_mboards > 1) else ( 'none' if clock_source1 else 'part' )}
+- id: time_source1
+  label: 'MB1: Time Source'
+  dtype: string
+  options: ['', external, mimo, gpsdo]
+  option_labels: [Default, External, MIMO Cable, O/B GPSDO]
+  hide: ${ 'all' if not (num_mboards > 1) else ( 'none' if time_source1 else 'part' )}
+- id: clock_source2
+  label: 'MB2: Clock Source'
+  dtype: string
+  options: ['', internal, external, external_1pps, mimo, gpsdo]
+  option_labels: [Default, Internal, External, External 1PPS, MIMO Cable, O/B GPSDO]
+  hide: ${ 'all' if not (num_mboards > 2) else ( 'none' if clock_source2 else 'part' )}
+- id: time_source2
+  label: 'MB2: Time Source'
+  dtype: string
+  options: ['', external, mimo, gpsdo]
+  option_labels: [Default, External, MIMO Cable, O/B GPSDO]
+  hide: ${ 'all' if not (num_mboards > 2) else ( 'none' if time_source2 else 'part' )}
+- id: clock_source3
+  label: 'MB3: Clock Source'
+  dtype: string
+  options: ['', internal, external, external_1pps, mimo, gpsdo]
+  option_labels: [Default, Internal, External, External 1PPS, MIMO Cable, O/B GPSDO]
+  hide: ${ 'all' if not (num_mboards > 3) else ( 'none' if clock_source3 else 'part' )}
+- id: time_source3
+  label: 'MB3: Time Source'
+  dtype: string
+  options: ['', external, mimo, gpsdo]
+  option_labels: [Default, External, MIMO Cable, O/B GPSDO]
+  hide: ${ 'all' if not (num_mboards > 3) else ( 'none' if time_source3 else 'part' )}
+- id: clock_source4
+  label: 'MB4: Clock Source'
+  dtype: string
+  options: ['', internal, external, external_1pps, mimo, gpsdo]
+  option_labels: [Default, Internal, External, External 1PPS, MIMO Cable, O/B GPSDO]
+  hide: ${ 'all' if not (num_mboards > 4) else ( 'none' if clock_source4 else 'part' )}
+- id: time_source4
+  label: 'MB4: Time Source'
+  dtype: string
+  options: ['', external, mimo, gpsdo]
+  option_labels: [Default, External, MIMO Cable, O/B GPSDO]
+  hide: ${ 'all' if not (num_mboards > 4) else ( 'none' if time_source4 else 'part' )}
+- id: clock_source5
+  label: 'MB5: Clock Source'
+  dtype: string
+  options: ['', internal, external, external_1pps, mimo, gpsdo]
+  option_labels: [Default, Internal, External, External 1PPS, MIMO Cable, O/B GPSDO]
+  hide: ${ 'all' if not (num_mboards > 5) else ( 'none' if clock_source5 else 'part' )}
+- id: time_source5
+  label: 'MB5: Time Source'
+  dtype: string
+  options: ['', external, mimo, gpsdo]
+  option_labels: [Default, External, MIMO Cable, O/B GPSDO]
+  hide: ${ 'all' if not (num_mboards > 5) else ( 'none' if time_source5 else 'part' )}
+- id: clock_source6
+  label: 'MB6: Clock Source'
+  dtype: string
+  options: ['', internal, external, external_1pps, mimo, gpsdo]
+  option_labels: [Default, Internal, External, External 1PPS, MIMO Cable, O/B GPSDO]
+  hide: ${ 'all' if not (num_mboards > 6) else ( 'none' if clock_source6 else 'part' )}
+- id: time_source6
+  label: 'MB6: Time Source'
+  dtype: string
+  options: ['', external, mimo, gpsdo]
+  option_labels: [Default, External, MIMO Cable, O/B GPSDO]
+  hide: ${ 'all' if not (num_mboards > 6) else ( 'none' if time_source6 else 'part' )}
+- id: clock_source7
+  label: 'MB7: Clock Source'
+  dtype: string
+  options: ['', internal, external, external_1pps, mimo, gpsdo]
+  option_labels: [Default, Internal, External, External 1PPS, MIMO Cable, O/B GPSDO]
+  hide: ${ 'all' if not (num_mboards > 7) else ( 'none' if clock_source7 else 'part' )}
+- id: time_source7
+  label: 'MB7: Time Source'
+  dtype: string
+  options: ['', external, mimo, gpsdo]
+  option_labels: [Default, External, MIMO Cable, O/B GPSDO]
+  hide: ${ 'all' if not (num_mboards > 7) else ( 'none' if time_source7 else 'part' )}
+- id: nchan
+  label: 'Number Channels'
+  dtype: int
+  default: 1
+  options: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32 ]
+- id: sample_rate
+  label: 'Sample Rate (sps)'
+  dtype: real
+  default: samp_rate
+
+- id: freq0
+  label: 'Ch0: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 0) else 'all'}
+- id: corr0
+  label: 'Ch0: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 0) else 'all'}
+- id: dc_offset_mode0
+  label: 'Ch0: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 0) else 'all'}
+- id: iq_balance_mode0
+  label: 'Ch0: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 0) else 'all'}
+- id: gain_mode0
+  label: 'Ch0: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 0) else 'all'}
+- id: gain0
+  label: 'Ch0: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 0) else 'all'}
+- id: if_gain0
+  label: 'Ch0: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 0) else 'all'}
+- id: bb_gain0
+  label: 'Ch0: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 0) else 'all'}
+- id: ant0
+  label: 'Ch0: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 0) else ('none' if eval('ant' + str(0)) else 'part')}
+- id: bw0
+  label: 'Ch0: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 0) else ('none' if eval('bw' + str(0)) else 'part')}
+
+- id: freq1
+  label: 'Ch1: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 1) else 'all'}
+- id: corr1
+  label: 'Ch1: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 1) else 'all'}
+- id: dc_offset_mode1
+  label: 'Ch1: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 1) else 'all'}
+- id: iq_balance_mode1
+  label: 'Ch1: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 1) else 'all'}
+- id: gain_mode1
+  label: 'Ch1: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 1) else 'all'}
+- id: gain1
+  label: 'Ch1: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 1) else 'all'}
+- id: if_gain1
+  label: 'Ch1: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 1) else 'all'}
+- id: bb_gain1
+  label: 'Ch1: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 1) else 'all'}
+- id: ant1
+  label: 'Ch1: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 1) else ('none' if eval('ant' + str(1)) else 'part')}
+- id: bw1
+  label: 'Ch1: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 1) else ('none' if eval('bw' + str(1)) else 'part')}
+
+- id: freq2
+  label: 'Ch2: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 2) else 'all'}
+- id: corr2
+  label: 'Ch2: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 2) else 'all'}
+- id: dc_offset_mode2
+  label: 'Ch2: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 2) else 'all'}
+- id: iq_balance_mode2
+  label: 'Ch2: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 2) else 'all'}
+- id: gain_mode2
+  label: 'Ch2: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 2) else 'all'}
+- id: gain2
+  label: 'Ch2: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 2) else 'all'}
+- id: if_gain2
+  label: 'Ch2: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 2) else 'all'}
+- id: bb_gain2
+  label: 'Ch2: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 2) else 'all'}
+- id: ant2
+  label: 'Ch2: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 2) else ('none' if eval('ant' + str(2)) else 'part')}
+- id: bw2
+  label: 'Ch2: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 2) else ('none' if eval('bw' + str(2)) else 'part')}
+
+- id: freq3
+  label: 'Ch3: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 3) else 'all'}
+- id: corr3
+  label: 'Ch3: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 3) else 'all'}
+- id: dc_offset_mode3
+  label: 'Ch3: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 3) else 'all'}
+- id: iq_balance_mode3
+  label: 'Ch3: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 3) else 'all'}
+- id: gain_mode3
+  label: 'Ch3: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 3) else 'all'}
+- id: gain3
+  label: 'Ch3: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 3) else 'all'}
+- id: if_gain3
+  label: 'Ch3: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 3) else 'all'}
+- id: bb_gain3
+  label: 'Ch3: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 3) else 'all'}
+- id: ant3
+  label: 'Ch3: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 3) else ('none' if eval('ant' + str(3)) else 'part')}
+- id: bw3
+  label: 'Ch3: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 3) else ('none' if eval('bw' + str(3)) else 'part')}
+
+- id: freq4
+  label: 'Ch4: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 4) else 'all'}
+- id: corr4
+  label: 'Ch4: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 4) else 'all'}
+- id: dc_offset_mode4
+  label: 'Ch4: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 4) else 'all'}
+- id: iq_balance_mode4
+  label: 'Ch4: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 4) else 'all'}
+- id: gain_mode4
+  label: 'Ch4: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 4) else 'all'}
+- id: gain4
+  label: 'Ch4: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 4) else 'all'}
+- id: if_gain4
+  label: 'Ch4: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 4) else 'all'}
+- id: bb_gain4
+  label: 'Ch4: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 4) else 'all'}
+- id: ant4
+  label: 'Ch4: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 4) else ('none' if eval('ant' + str(4)) else 'part')}
+- id: bw4
+  label: 'Ch4: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 4) else ('none' if eval('bw' + str(4)) else 'part')}
+
+- id: freq5
+  label: 'Ch5: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 5) else 'all'}
+- id: corr5
+  label: 'Ch5: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 5) else 'all'}
+- id: dc_offset_mode5
+  label: 'Ch5: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 5) else 'all'}
+- id: iq_balance_mode5
+  label: 'Ch5: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 5) else 'all'}
+- id: gain_mode5
+  label: 'Ch5: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 5) else 'all'}
+- id: gain5
+  label: 'Ch5: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 5) else 'all'}
+- id: if_gain5
+  label: 'Ch5: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 5) else 'all'}
+- id: bb_gain5
+  label: 'Ch5: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 5) else 'all'}
+- id: ant5
+  label: 'Ch5: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 5) else ('none' if eval('ant' + str(5)) else 'part')}
+- id: bw5
+  label: 'Ch5: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 5) else ('none' if eval('bw' + str(5)) else 'part')}
+
+- id: freq6
+  label: 'Ch6: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 6) else 'all'}
+- id: corr6
+  label: 'Ch6: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 6) else 'all'}
+- id: dc_offset_mode6
+  label: 'Ch6: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 6) else 'all'}
+- id: iq_balance_mode6
+  label: 'Ch6: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 6) else 'all'}
+- id: gain_mode6
+  label: 'Ch6: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 6) else 'all'}
+- id: gain6
+  label: 'Ch6: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 6) else 'all'}
+- id: if_gain6
+  label: 'Ch6: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 6) else 'all'}
+- id: bb_gain6
+  label: 'Ch6: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 6) else 'all'}
+- id: ant6
+  label: 'Ch6: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 6) else ('none' if eval('ant' + str(6)) else 'part')}
+- id: bw6
+  label: 'Ch6: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 6) else ('none' if eval('bw' + str(6)) else 'part')}
+
+- id: freq7
+  label: 'Ch7: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 7) else 'all'}
+- id: corr7
+  label: 'Ch7: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 7) else 'all'}
+- id: dc_offset_mode7
+  label: 'Ch7: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 7) else 'all'}
+- id: iq_balance_mode7
+  label: 'Ch7: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 7) else 'all'}
+- id: gain_mode7
+  label: 'Ch7: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 7) else 'all'}
+- id: gain7
+  label: 'Ch7: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 7) else 'all'}
+- id: if_gain7
+  label: 'Ch7: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 7) else 'all'}
+- id: bb_gain7
+  label: 'Ch7: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 7) else 'all'}
+- id: ant7
+  label: 'Ch7: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 7) else ('none' if eval('ant' + str(7)) else 'part')}
+- id: bw7
+  label: 'Ch7: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 7) else ('none' if eval('bw' + str(7)) else 'part')}
+
+- id: freq8
+  label: 'Ch8: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 8) else 'all'}
+- id: corr8
+  label: 'Ch8: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 8) else 'all'}
+- id: dc_offset_mode8
+  label: 'Ch8: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 8) else 'all'}
+- id: iq_balance_mode8
+  label: 'Ch8: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 8) else 'all'}
+- id: gain_mode8
+  label: 'Ch8: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 8) else 'all'}
+- id: gain8
+  label: 'Ch8: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 8) else 'all'}
+- id: if_gain8
+  label: 'Ch8: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 8) else 'all'}
+- id: bb_gain8
+  label: 'Ch8: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 8) else 'all'}
+- id: ant8
+  label: 'Ch8: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 8) else ('none' if eval('ant' + str(8)) else 'part')}
+- id: bw8
+  label: 'Ch8: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 8) else ('none' if eval('bw' + str(8)) else 'part')}
+
+- id: freq9
+  label: 'Ch9: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 9) else 'all'}
+- id: corr9
+  label: 'Ch9: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 9) else 'all'}
+- id: dc_offset_mode9
+  label: 'Ch9: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 9) else 'all'}
+- id: iq_balance_mode9
+  label: 'Ch9: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 9) else 'all'}
+- id: gain_mode9
+  label: 'Ch9: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 9) else 'all'}
+- id: gain9
+  label: 'Ch9: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 9) else 'all'}
+- id: if_gain9
+  label: 'Ch9: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 9) else 'all'}
+- id: bb_gain9
+  label: 'Ch9: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 9) else 'all'}
+- id: ant9
+  label: 'Ch9: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 9) else ('none' if eval('ant' + str(9)) else 'part')}
+- id: bw9
+  label: 'Ch9: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 9) else ('none' if eval('bw' + str(9)) else 'part')}
+
+- id: freq10
+  label: 'Ch10: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 10) else 'all'}
+- id: corr10
+  label: 'Ch10: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 10) else 'all'}
+- id: dc_offset_mode10
+  label: 'Ch10: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 10) else 'all'}
+- id: iq_balance_mode10
+  label: 'Ch10: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 10) else 'all'}
+- id: gain_mode10
+  label: 'Ch10: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 10) else 'all'}
+- id: gain10
+  label: 'Ch10: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 10) else 'all'}
+- id: if_gain10
+  label: 'Ch10: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 10) else 'all'}
+- id: bb_gain10
+  label: 'Ch10: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 10) else 'all'}
+- id: ant10
+  label: 'Ch10: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 10) else ('none' if eval('ant' + str(10)) else 'part')}
+- id: bw10
+  label: 'Ch10: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 10) else ('none' if eval('bw' + str(10)) else 'part')}
+
+- id: freq11
+  label: 'Ch11: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 11) else 'all'}
+- id: corr11
+  label: 'Ch11: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 11) else 'all'}
+- id: dc_offset_mode11
+  label: 'Ch11: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 11) else 'all'}
+- id: iq_balance_mode11
+  label: 'Ch11: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 11) else 'all'}
+- id: gain_mode11
+  label: 'Ch11: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 11) else 'all'}
+- id: gain11
+  label: 'Ch11: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 11) else 'all'}
+- id: if_gain11
+  label: 'Ch11: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 11) else 'all'}
+- id: bb_gain11
+  label: 'Ch11: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 11) else 'all'}
+- id: ant11
+  label: 'Ch11: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 11) else ('none' if eval('ant' + str(11)) else 'part')}
+- id: bw11
+  label: 'Ch11: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 11) else ('none' if eval('bw' + str(11)) else 'part')}
+
+- id: freq12
+  label: 'Ch12: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 12) else 'all'}
+- id: corr12
+  label: 'Ch12: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 12) else 'all'}
+- id: dc_offset_mode12
+  label: 'Ch12: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 12) else 'all'}
+- id: iq_balance_mode12
+  label: 'Ch12: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 12) else 'all'}
+- id: gain_mode12
+  label: 'Ch12: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 12) else 'all'}
+- id: gain12
+  label: 'Ch12: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 12) else 'all'}
+- id: if_gain12
+  label: 'Ch12: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 12) else 'all'}
+- id: bb_gain12
+  label: 'Ch12: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 12) else 'all'}
+- id: ant12
+  label: 'Ch12: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 12) else ('none' if eval('ant' + str(12)) else 'part')}
+- id: bw12
+  label: 'Ch12: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 12) else ('none' if eval('bw' + str(12)) else 'part')}
+
+- id: freq13
+  label: 'Ch13: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 13) else 'all'}
+- id: corr13
+  label: 'Ch13: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 13) else 'all'}
+- id: dc_offset_mode13
+  label: 'Ch13: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 13) else 'all'}
+- id: iq_balance_mode13
+  label: 'Ch13: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 13) else 'all'}
+- id: gain_mode13
+  label: 'Ch13: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 13) else 'all'}
+- id: gain13
+  label: 'Ch13: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 13) else 'all'}
+- id: if_gain13
+  label: 'Ch13: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 13) else 'all'}
+- id: bb_gain13
+  label: 'Ch13: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 13) else 'all'}
+- id: ant13
+  label: 'Ch13: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 13) else ('none' if eval('ant' + str(13)) else 'part')}
+- id: bw13
+  label: 'Ch13: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 13) else ('none' if eval('bw' + str(13)) else 'part')}
+
+- id: freq14
+  label: 'Ch14: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 14) else 'all'}
+- id: corr14
+  label: 'Ch14: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 14) else 'all'}
+- id: dc_offset_mode14
+  label: 'Ch14: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 14) else 'all'}
+- id: iq_balance_mode14
+  label: 'Ch14: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 14) else 'all'}
+- id: gain_mode14
+  label: 'Ch14: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 14) else 'all'}
+- id: gain14
+  label: 'Ch14: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 14) else 'all'}
+- id: if_gain14
+  label: 'Ch14: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 14) else 'all'}
+- id: bb_gain14
+  label: 'Ch14: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 14) else 'all'}
+- id: ant14
+  label: 'Ch14: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 14) else ('none' if eval('ant' + str(14)) else 'part')}
+- id: bw14
+  label: 'Ch14: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 14) else ('none' if eval('bw' + str(14)) else 'part')}
+
+- id: freq15
+  label: 'Ch15: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 15) else 'all'}
+- id: corr15
+  label: 'Ch15: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 15) else 'all'}
+- id: dc_offset_mode15
+  label: 'Ch15: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 15) else 'all'}
+- id: iq_balance_mode15
+  label: 'Ch15: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 15) else 'all'}
+- id: gain_mode15
+  label: 'Ch15: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 15) else 'all'}
+- id: gain15
+  label: 'Ch15: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 15) else 'all'}
+- id: if_gain15
+  label: 'Ch15: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 15) else 'all'}
+- id: bb_gain15
+  label: 'Ch15: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 15) else 'all'}
+- id: ant15
+  label: 'Ch15: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 15) else ('none' if eval('ant' + str(15)) else 'part')}
+- id: bw15
+  label: 'Ch15: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 15) else ('none' if eval('bw' + str(15)) else 'part')}
+
+- id: freq16
+  label: 'Ch16: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 16) else 'all'}
+- id: corr16
+  label: 'Ch16: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 16) else 'all'}
+- id: dc_offset_mode16
+  label: 'Ch16: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 16) else 'all'}
+- id: iq_balance_mode16
+  label: 'Ch16: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 16) else 'all'}
+- id: gain_mode16
+  label: 'Ch16: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 16) else 'all'}
+- id: gain16
+  label: 'Ch16: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 16) else 'all'}
+- id: if_gain16
+  label: 'Ch16: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 16) else 'all'}
+- id: bb_gain16
+  label: 'Ch16: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 16) else 'all'}
+- id: ant16
+  label: 'Ch16: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 16) else ('none' if eval('ant' + str(16)) else 'part')}
+- id: bw16
+  label: 'Ch16: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 16) else ('none' if eval('bw' + str(16)) else 'part')}
+
+- id: freq17
+  label: 'Ch17: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 17) else 'all'}
+- id: corr17
+  label: 'Ch17: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 17) else 'all'}
+- id: dc_offset_mode17
+  label: 'Ch17: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 17) else 'all'}
+- id: iq_balance_mode17
+  label: 'Ch17: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 17) else 'all'}
+- id: gain_mode17
+  label: 'Ch17: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 17) else 'all'}
+- id: gain17
+  label: 'Ch17: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 17) else 'all'}
+- id: if_gain17
+  label: 'Ch17: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 17) else 'all'}
+- id: bb_gain17
+  label: 'Ch17: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 17) else 'all'}
+- id: ant17
+  label: 'Ch17: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 17) else ('none' if eval('ant' + str(17)) else 'part')}
+- id: bw17
+  label: 'Ch17: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 17) else ('none' if eval('bw' + str(17)) else 'part')}
+
+- id: freq18
+  label: 'Ch18: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 18) else 'all'}
+- id: corr18
+  label: 'Ch18: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 18) else 'all'}
+- id: dc_offset_mode18
+  label: 'Ch18: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 18) else 'all'}
+- id: iq_balance_mode18
+  label: 'Ch18: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 18) else 'all'}
+- id: gain_mode18
+  label: 'Ch18: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 18) else 'all'}
+- id: gain18
+  label: 'Ch18: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 18) else 'all'}
+- id: if_gain18
+  label: 'Ch18: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 18) else 'all'}
+- id: bb_gain18
+  label: 'Ch18: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 18) else 'all'}
+- id: ant18
+  label: 'Ch18: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 18) else ('none' if eval('ant' + str(18)) else 'part')}
+- id: bw18
+  label: 'Ch18: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 18) else ('none' if eval('bw' + str(18)) else 'part')}
+
+- id: freq19
+  label: 'Ch19: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 19) else 'all'}
+- id: corr19
+  label: 'Ch19: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 19) else 'all'}
+- id: dc_offset_mode19
+  label: 'Ch19: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 19) else 'all'}
+- id: iq_balance_mode19
+  label: 'Ch19: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 19) else 'all'}
+- id: gain_mode19
+  label: 'Ch19: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 19) else 'all'}
+- id: gain19
+  label: 'Ch19: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 19) else 'all'}
+- id: if_gain19
+  label: 'Ch19: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 19) else 'all'}
+- id: bb_gain19
+  label: 'Ch19: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 19) else 'all'}
+- id: ant19
+  label: 'Ch19: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 19) else ('none' if eval('ant' + str(19)) else 'part')}
+- id: bw19
+  label: 'Ch19: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 19) else ('none' if eval('bw' + str(19)) else 'part')}
+
+- id: freq20
+  label: 'Ch20: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 20) else 'all'}
+- id: corr20
+  label: 'Ch20: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 20) else 'all'}
+- id: dc_offset_mode20
+  label: 'Ch20: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 20) else 'all'}
+- id: iq_balance_mode20
+  label: 'Ch20: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 20) else 'all'}
+- id: gain_mode20
+  label: 'Ch20: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 20) else 'all'}
+- id: gain20
+  label: 'Ch20: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 20) else 'all'}
+- id: if_gain20
+  label: 'Ch20: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 20) else 'all'}
+- id: bb_gain20
+  label: 'Ch20: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 20) else 'all'}
+- id: ant20
+  label: 'Ch20: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 20) else ('none' if eval('ant' + str(20)) else 'part')}
+- id: bw20
+  label: 'Ch20: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 20) else ('none' if eval('bw' + str(20)) else 'part')}
+
+- id: freq21
+  label: 'Ch21: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 21) else 'all'}
+- id: corr21
+  label: 'Ch21: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 21) else 'all'}
+- id: dc_offset_mode21
+  label: 'Ch21: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 21) else 'all'}
+- id: iq_balance_mode21
+  label: 'Ch21: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 21) else 'all'}
+- id: gain_mode21
+  label: 'Ch21: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 21) else 'all'}
+- id: gain21
+  label: 'Ch21: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 21) else 'all'}
+- id: if_gain21
+  label: 'Ch21: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 21) else 'all'}
+- id: bb_gain21
+  label: 'Ch21: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 21) else 'all'}
+- id: ant21
+  label: 'Ch21: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 21) else ('none' if eval('ant' + str(21)) else 'part')}
+- id: bw21
+  label: 'Ch21: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 21) else ('none' if eval('bw' + str(21)) else 'part')}
+
+- id: freq22
+  label: 'Ch22: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 22) else 'all'}
+- id: corr22
+  label: 'Ch22: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 22) else 'all'}
+- id: dc_offset_mode22
+  label: 'Ch22: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 22) else 'all'}
+- id: iq_balance_mode22
+  label: 'Ch22: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 22) else 'all'}
+- id: gain_mode22
+  label: 'Ch22: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 22) else 'all'}
+- id: gain22
+  label: 'Ch22: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 22) else 'all'}
+- id: if_gain22
+  label: 'Ch22: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 22) else 'all'}
+- id: bb_gain22
+  label: 'Ch22: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 22) else 'all'}
+- id: ant22
+  label: 'Ch22: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 22) else ('none' if eval('ant' + str(22)) else 'part')}
+- id: bw22
+  label: 'Ch22: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 22) else ('none' if eval('bw' + str(22)) else 'part')}
+
+- id: freq23
+  label: 'Ch23: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 23) else 'all'}
+- id: corr23
+  label: 'Ch23: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 23) else 'all'}
+- id: dc_offset_mode23
+  label: 'Ch23: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 23) else 'all'}
+- id: iq_balance_mode23
+  label: 'Ch23: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 23) else 'all'}
+- id: gain_mode23
+  label: 'Ch23: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 23) else 'all'}
+- id: gain23
+  label: 'Ch23: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 23) else 'all'}
+- id: if_gain23
+  label: 'Ch23: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 23) else 'all'}
+- id: bb_gain23
+  label: 'Ch23: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 23) else 'all'}
+- id: ant23
+  label: 'Ch23: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 23) else ('none' if eval('ant' + str(23)) else 'part')}
+- id: bw23
+  label: 'Ch23: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 23) else ('none' if eval('bw' + str(23)) else 'part')}
+
+- id: freq24
+  label: 'Ch24: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 24) else 'all'}
+- id: corr24
+  label: 'Ch24: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 24) else 'all'}
+- id: dc_offset_mode24
+  label: 'Ch24: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 24) else 'all'}
+- id: iq_balance_mode24
+  label: 'Ch24: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 24) else 'all'}
+- id: gain_mode24
+  label: 'Ch24: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 24) else 'all'}
+- id: gain24
+  label: 'Ch24: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 24) else 'all'}
+- id: if_gain24
+  label: 'Ch24: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 24) else 'all'}
+- id: bb_gain24
+  label: 'Ch24: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 24) else 'all'}
+- id: ant24
+  label: 'Ch24: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 24) else ('none' if eval('ant' + str(24)) else 'part')}
+- id: bw24
+  label: 'Ch24: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 24) else ('none' if eval('bw' + str(24)) else 'part')}
+
+- id: freq25
+  label: 'Ch25: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 25) else 'all'}
+- id: corr25
+  label: 'Ch25: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 25) else 'all'}
+- id: dc_offset_mode25
+  label: 'Ch25: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 25) else 'all'}
+- id: iq_balance_mode25
+  label: 'Ch25: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 25) else 'all'}
+- id: gain_mode25
+  label: 'Ch25: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 25) else 'all'}
+- id: gain25
+  label: 'Ch25: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 25) else 'all'}
+- id: if_gain25
+  label: 'Ch25: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 25) else 'all'}
+- id: bb_gain25
+  label: 'Ch25: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 25) else 'all'}
+- id: ant25
+  label: 'Ch25: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 25) else ('none' if eval('ant' + str(25)) else 'part')}
+- id: bw25
+  label: 'Ch25: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 25) else ('none' if eval('bw' + str(25)) else 'part')}
+
+- id: freq26
+  label: 'Ch26: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 26) else 'all'}
+- id: corr26
+  label: 'Ch26: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 26) else 'all'}
+- id: dc_offset_mode26
+  label: 'Ch26: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 26) else 'all'}
+- id: iq_balance_mode26
+  label: 'Ch26: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 26) else 'all'}
+- id: gain_mode26
+  label: 'Ch26: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 26) else 'all'}
+- id: gain26
+  label: 'Ch26: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 26) else 'all'}
+- id: if_gain26
+  label: 'Ch26: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 26) else 'all'}
+- id: bb_gain26
+  label: 'Ch26: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 26) else 'all'}
+- id: ant26
+  label: 'Ch26: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 26) else ('none' if eval('ant' + str(26)) else 'part')}
+- id: bw26
+  label: 'Ch26: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 26) else ('none' if eval('bw' + str(26)) else 'part')}
+
+- id: freq27
+  label: 'Ch27: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 27) else 'all'}
+- id: corr27
+  label: 'Ch27: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 27) else 'all'}
+- id: dc_offset_mode27
+  label: 'Ch27: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 27) else 'all'}
+- id: iq_balance_mode27
+  label: 'Ch27: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 27) else 'all'}
+- id: gain_mode27
+  label: 'Ch27: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 27) else 'all'}
+- id: gain27
+  label: 'Ch27: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 27) else 'all'}
+- id: if_gain27
+  label: 'Ch27: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 27) else 'all'}
+- id: bb_gain27
+  label: 'Ch27: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 27) else 'all'}
+- id: ant27
+  label: 'Ch27: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 27) else ('none' if eval('ant' + str(27)) else 'part')}
+- id: bw27
+  label: 'Ch27: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 27) else ('none' if eval('bw' + str(27)) else 'part')}
+
+- id: freq28
+  label: 'Ch28: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 28) else 'all'}
+- id: corr28
+  label: 'Ch28: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 28) else 'all'}
+- id: dc_offset_mode28
+  label: 'Ch28: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 28) else 'all'}
+- id: iq_balance_mode28
+  label: 'Ch28: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 28) else 'all'}
+- id: gain_mode28
+  label: 'Ch28: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 28) else 'all'}
+- id: gain28
+  label: 'Ch28: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 28) else 'all'}
+- id: if_gain28
+  label: 'Ch28: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 28) else 'all'}
+- id: bb_gain28
+  label: 'Ch28: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 28) else 'all'}
+- id: ant28
+  label: 'Ch28: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 28) else ('none' if eval('ant' + str(28)) else 'part')}
+- id: bw28
+  label: 'Ch28: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 28) else ('none' if eval('bw' + str(28)) else 'part')}
+
+- id: freq29
+  label: 'Ch29: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 29) else 'all'}
+- id: corr29
+  label: 'Ch29: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 29) else 'all'}
+- id: dc_offset_mode29
+  label: 'Ch29: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 29) else 'all'}
+- id: iq_balance_mode29
+  label: 'Ch29: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 29) else 'all'}
+- id: gain_mode29
+  label: 'Ch29: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 29) else 'all'}
+- id: gain29
+  label: 'Ch29: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 29) else 'all'}
+- id: if_gain29
+  label: 'Ch29: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 29) else 'all'}
+- id: bb_gain29
+  label: 'Ch29: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 29) else 'all'}
+- id: ant29
+  label: 'Ch29: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 29) else ('none' if eval('ant' + str(29)) else 'part')}
+- id: bw29
+  label: 'Ch29: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 29) else ('none' if eval('bw' + str(29)) else 'part')}
+
+- id: freq30
+  label: 'Ch30: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 30) else 'all'}
+- id: corr30
+  label: 'Ch30: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 30) else 'all'}
+- id: dc_offset_mode30
+  label: 'Ch30: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 30) else 'all'}
+- id: iq_balance_mode30
+  label: 'Ch30: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 30) else 'all'}
+- id: gain_mode30
+  label: 'Ch30: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 30) else 'all'}
+- id: gain30
+  label: 'Ch30: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 30) else 'all'}
+- id: if_gain30
+  label: 'Ch30: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 30) else 'all'}
+- id: bb_gain30
+  label: 'Ch30: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 30) else 'all'}
+- id: ant30
+  label: 'Ch30: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 30) else ('none' if eval('ant' + str(30)) else 'part')}
+- id: bw30
+  label: 'Ch30: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 30) else ('none' if eval('bw' + str(30)) else 'part')}
+
+- id: freq31
+  label: 'Ch31: Frequency (Hz)'
+  dtype: real
+  default: 100e6
+  hide: ${'none' if (nchan > 31) else 'all'}
+- id: corr31
+  label: 'Ch31: Frequency Correction (ppm)'
+  dtype: real
+  default: 0
+  hide: ${'none' if (nchan > 31) else 'all'}
+- id: dc_offset_mode31
+  label: 'Ch31: DC Offset Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 31) else 'all'}
+- id: iq_balance_mode31
+  label: 'Ch31: IQ Balance Mode'
+  dtype: int
+  default: 0
+  options: [0, 1, 2]
+  option_labels: [Off, Manual, Automatic]
+  hide: ${'none' if (nchan > 31) else 'all'}
+- id: gain_mode31
+  label: 'Ch31: Gain Mode'
+  dtype: bool
+  default: False
+  options: [False, True]
+  option_labels: [Manual, Automatic]
+  hide: ${'none' if (nchan > 31) else 'all'}
+- id: gain31
+  label: 'Ch31: RF Gain (dB)'
+  dtype: real
+  default: 10
+  hide: ${'none' if (nchan > 31) else 'all'}
+- id: if_gain31
+  label: 'Ch31: Intermediate Frequency Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 31) else 'all'}
+- id: bb_gain31
+  label: 'Ch31: Baseband Gain (dB)'
+  dtype: real
+  default: 20
+  hide: ${'none' if (nchan > 31) else 'all'}
+- id: ant31
+  label: 'Ch31: Antenna'
+  dtype: string
+  default: ""
+  hide: ${'all' if not (nchan > 31) else ('none' if eval('ant' + str(31)) else 'part')}
+- id: bw31
+  label: 'Ch31: Bandwidth (Hz)'
+  dtype: real
+  default: 0
+  hide: ${'all' if not (nchan > 31) else ('none' if eval('bw' + str(31)) else 'part')}
+
+
+inputs:
+- domain: message
+  id: command
+  optional: true
+
+outputs:
+- domain: stream
+  dtype: ${type.type}
+  multiplicity: ${nchan}
+
+templates:
+  imports: |-
+     import osmosdr
+     import time
+  make: |
+    osmosdr.source(
+        args="numchan=" + str(${nchan}) + " " + ${args}
+    )
+    % if context.get('num_mboards')() > 0:
+    % if context.get('clock_source0')():
+    self.${id}.set_clock_source(${clock_source0}, 0)
+    % endif
+    % if context.get('time_source0')():
+    self.${id}.set_time_source(${time_source0}, 0)
+    % endif
+    % endif
+    % if context.get('num_mboards')() > 1:
+    % if context.get('clock_source1')():
+    self.${id}.set_clock_source(${clock_source1}, 1)
+    % endif
+    % if context.get('time_source1')():
+    self.${id}.set_time_source(${time_source1}, 1)
+    % endif
+    % endif
+    % if context.get('num_mboards')() > 2:
+    % if context.get('clock_source2')():
+    self.${id}.set_clock_source(${clock_source2}, 2)
+    % endif
+    % if context.get('time_source2')():
+    self.${id}.set_time_source(${time_source2}, 2)
+    % endif
+    % endif
+    % if context.get('num_mboards')() > 3:
+    % if context.get('clock_source3')():
+    self.${id}.set_clock_source(${clock_source3}, 3)
+    % endif
+    % if context.get('time_source3')():
+    self.${id}.set_time_source(${time_source3}, 3)
+    % endif
+    % endif
+    % if context.get('num_mboards')() > 4:
+    % if context.get('clock_source4')():
+    self.${id}.set_clock_source(${clock_source4}, 4)
+    % endif
+    % if context.get('time_source4')():
+    self.${id}.set_time_source(${time_source4}, 4)
+    % endif
+    % endif
+    % if context.get('num_mboards')() > 5:
+    % if context.get('clock_source5')():
+    self.${id}.set_clock_source(${clock_source5}, 5)
+    % endif
+    % if context.get('time_source5')():
+    self.${id}.set_time_source(${time_source5}, 5)
+    % endif
+    % endif
+    % if context.get('num_mboards')() > 6:
+    % if context.get('clock_source6')():
+    self.${id}.set_clock_source(${clock_source6}, 6)
+    % endif
+    % if context.get('time_source6')():
+    self.${id}.set_time_source(${time_source6}, 6)
+    % endif
+    % endif
+    % if context.get('num_mboards')() > 7:
+    % if context.get('clock_source7')():
+    self.${id}.set_clock_source(${clock_source7}, 7)
+    % endif
+    % if context.get('time_source7')():
+    self.${id}.set_time_source(${time_source7}, 7)
+    % endif
+    % endif
+    % if sync == 'sync':
+    self.${id}.set_time_unknown_pps(osmosdr.time_spec_t())
+    % elif sync == 'pc_clock':
+    self.${id}.set_time_now(osmosdr.time_spec_t(time.time()), osmosdr.ALL_MBOARDS)
+    % endif
+    self.${id}.set_sample_rate(${sample_rate})
+    % if context.get('nchan')() > 0:
+    self.${id}.set_center_freq(${freq0}, 0)
+    self.${id}.set_freq_corr(${corr0}, 0)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode0}, 0)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode0}, 0)
+    self.${id}.set_gain_mode(${gain_mode0}, 0)
+    self.${id}.set_gain(${gain0}, 0)
+    self.${id}.set_if_gain(${if_gain0}, 0)
+    self.${id}.set_bb_gain(${bb_gain0}, 0)
+    self.${id}.set_antenna(${ant0}, 0)
+    self.${id}.set_bandwidth(${bw0}, 0)
+    % endif
+    % if context.get('nchan')() > 1:
+    self.${id}.set_center_freq(${freq1}, 1)
+    self.${id}.set_freq_corr(${corr1}, 1)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode1}, 1)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode1}, 1)
+    self.${id}.set_gain_mode(${gain_mode1}, 1)
+    self.${id}.set_gain(${gain1}, 1)
+    self.${id}.set_if_gain(${if_gain1}, 1)
+    self.${id}.set_bb_gain(${bb_gain1}, 1)
+    self.${id}.set_antenna(${ant1}, 1)
+    self.${id}.set_bandwidth(${bw1}, 1)
+    % endif
+    % if context.get('nchan')() > 2:
+    self.${id}.set_center_freq(${freq2}, 2)
+    self.${id}.set_freq_corr(${corr2}, 2)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode2}, 2)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode2}, 2)
+    self.${id}.set_gain_mode(${gain_mode2}, 2)
+    self.${id}.set_gain(${gain2}, 2)
+    self.${id}.set_if_gain(${if_gain2}, 2)
+    self.${id}.set_bb_gain(${bb_gain2}, 2)
+    self.${id}.set_antenna(${ant2}, 2)
+    self.${id}.set_bandwidth(${bw2}, 2)
+    % endif
+    % if context.get('nchan')() > 3:
+    self.${id}.set_center_freq(${freq3}, 3)
+    self.${id}.set_freq_corr(${corr3}, 3)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode3}, 3)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode3}, 3)
+    self.${id}.set_gain_mode(${gain_mode3}, 3)
+    self.${id}.set_gain(${gain3}, 3)
+    self.${id}.set_if_gain(${if_gain3}, 3)
+    self.${id}.set_bb_gain(${bb_gain3}, 3)
+    self.${id}.set_antenna(${ant3}, 3)
+    self.${id}.set_bandwidth(${bw3}, 3)
+    % endif
+    % if context.get('nchan')() > 4:
+    self.${id}.set_center_freq(${freq4}, 4)
+    self.${id}.set_freq_corr(${corr4}, 4)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode4}, 4)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode4}, 4)
+    self.${id}.set_gain_mode(${gain_mode4}, 4)
+    self.${id}.set_gain(${gain4}, 4)
+    self.${id}.set_if_gain(${if_gain4}, 4)
+    self.${id}.set_bb_gain(${bb_gain4}, 4)
+    self.${id}.set_antenna(${ant4}, 4)
+    self.${id}.set_bandwidth(${bw4}, 4)
+    % endif
+    % if context.get('nchan')() > 5:
+    self.${id}.set_center_freq(${freq5}, 5)
+    self.${id}.set_freq_corr(${corr5}, 5)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode5}, 5)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode5}, 5)
+    self.${id}.set_gain_mode(${gain_mode5}, 5)
+    self.${id}.set_gain(${gain5}, 5)
+    self.${id}.set_if_gain(${if_gain5}, 5)
+    self.${id}.set_bb_gain(${bb_gain5}, 5)
+    self.${id}.set_antenna(${ant5}, 5)
+    self.${id}.set_bandwidth(${bw5}, 5)
+    % endif
+    % if context.get('nchan')() > 6:
+    self.${id}.set_center_freq(${freq6}, 6)
+    self.${id}.set_freq_corr(${corr6}, 6)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode6}, 6)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode6}, 6)
+    self.${id}.set_gain_mode(${gain_mode6}, 6)
+    self.${id}.set_gain(${gain6}, 6)
+    self.${id}.set_if_gain(${if_gain6}, 6)
+    self.${id}.set_bb_gain(${bb_gain6}, 6)
+    self.${id}.set_antenna(${ant6}, 6)
+    self.${id}.set_bandwidth(${bw6}, 6)
+    % endif
+    % if context.get('nchan')() > 7:
+    self.${id}.set_center_freq(${freq7}, 7)
+    self.${id}.set_freq_corr(${corr7}, 7)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode7}, 7)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode7}, 7)
+    self.${id}.set_gain_mode(${gain_mode7}, 7)
+    self.${id}.set_gain(${gain7}, 7)
+    self.${id}.set_if_gain(${if_gain7}, 7)
+    self.${id}.set_bb_gain(${bb_gain7}, 7)
+    self.${id}.set_antenna(${ant7}, 7)
+    self.${id}.set_bandwidth(${bw7}, 7)
+    % endif
+    % if context.get('nchan')() > 8:
+    self.${id}.set_center_freq(${freq8}, 8)
+    self.${id}.set_freq_corr(${corr8}, 8)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode8}, 8)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode8}, 8)
+    self.${id}.set_gain_mode(${gain_mode8}, 8)
+    self.${id}.set_gain(${gain8}, 8)
+    self.${id}.set_if_gain(${if_gain8}, 8)
+    self.${id}.set_bb_gain(${bb_gain8}, 8)
+    self.${id}.set_antenna(${ant8}, 8)
+    self.${id}.set_bandwidth(${bw8}, 8)
+    % endif
+    % if context.get('nchan')() > 9:
+    self.${id}.set_center_freq(${freq9}, 9)
+    self.${id}.set_freq_corr(${corr9}, 9)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode9}, 9)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode9}, 9)
+    self.${id}.set_gain_mode(${gain_mode9}, 9)
+    self.${id}.set_gain(${gain9}, 9)
+    self.${id}.set_if_gain(${if_gain9}, 9)
+    self.${id}.set_bb_gain(${bb_gain9}, 9)
+    self.${id}.set_antenna(${ant9}, 9)
+    self.${id}.set_bandwidth(${bw9}, 9)
+    % endif
+    % if context.get('nchan')() > 10:
+    self.${id}.set_center_freq(${freq10}, 10)
+    self.${id}.set_freq_corr(${corr10}, 10)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode10}, 10)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode10}, 10)
+    self.${id}.set_gain_mode(${gain_mode10}, 10)
+    self.${id}.set_gain(${gain10}, 10)
+    self.${id}.set_if_gain(${if_gain10}, 10)
+    self.${id}.set_bb_gain(${bb_gain10}, 10)
+    self.${id}.set_antenna(${ant10}, 10)
+    self.${id}.set_bandwidth(${bw10}, 10)
+    % endif
+    % if context.get('nchan')() > 11:
+    self.${id}.set_center_freq(${freq11}, 11)
+    self.${id}.set_freq_corr(${corr11}, 11)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode11}, 11)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode11}, 11)
+    self.${id}.set_gain_mode(${gain_mode11}, 11)
+    self.${id}.set_gain(${gain11}, 11)
+    self.${id}.set_if_gain(${if_gain11}, 11)
+    self.${id}.set_bb_gain(${bb_gain11}, 11)
+    self.${id}.set_antenna(${ant11}, 11)
+    self.${id}.set_bandwidth(${bw11}, 11)
+    % endif
+    % if context.get('nchan')() > 12:
+    self.${id}.set_center_freq(${freq12}, 12)
+    self.${id}.set_freq_corr(${corr12}, 12)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode12}, 12)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode12}, 12)
+    self.${id}.set_gain_mode(${gain_mode12}, 12)
+    self.${id}.set_gain(${gain12}, 12)
+    self.${id}.set_if_gain(${if_gain12}, 12)
+    self.${id}.set_bb_gain(${bb_gain12}, 12)
+    self.${id}.set_antenna(${ant12}, 12)
+    self.${id}.set_bandwidth(${bw12}, 12)
+    % endif
+    % if context.get('nchan')() > 13:
+    self.${id}.set_center_freq(${freq13}, 13)
+    self.${id}.set_freq_corr(${corr13}, 13)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode13}, 13)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode13}, 13)
+    self.${id}.set_gain_mode(${gain_mode13}, 13)
+    self.${id}.set_gain(${gain13}, 13)
+    self.${id}.set_if_gain(${if_gain13}, 13)
+    self.${id}.set_bb_gain(${bb_gain13}, 13)
+    self.${id}.set_antenna(${ant13}, 13)
+    self.${id}.set_bandwidth(${bw13}, 13)
+    % endif
+    % if context.get('nchan')() > 14:
+    self.${id}.set_center_freq(${freq14}, 14)
+    self.${id}.set_freq_corr(${corr14}, 14)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode14}, 14)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode14}, 14)
+    self.${id}.set_gain_mode(${gain_mode14}, 14)
+    self.${id}.set_gain(${gain14}, 14)
+    self.${id}.set_if_gain(${if_gain14}, 14)
+    self.${id}.set_bb_gain(${bb_gain14}, 14)
+    self.${id}.set_antenna(${ant14}, 14)
+    self.${id}.set_bandwidth(${bw14}, 14)
+    % endif
+    % if context.get('nchan')() > 15:
+    self.${id}.set_center_freq(${freq15}, 15)
+    self.${id}.set_freq_corr(${corr15}, 15)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode15}, 15)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode15}, 15)
+    self.${id}.set_gain_mode(${gain_mode15}, 15)
+    self.${id}.set_gain(${gain15}, 15)
+    self.${id}.set_if_gain(${if_gain15}, 15)
+    self.${id}.set_bb_gain(${bb_gain15}, 15)
+    self.${id}.set_antenna(${ant15}, 15)
+    self.${id}.set_bandwidth(${bw15}, 15)
+    % endif
+    % if context.get('nchan')() > 16:
+    self.${id}.set_center_freq(${freq16}, 16)
+    self.${id}.set_freq_corr(${corr16}, 16)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode16}, 16)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode16}, 16)
+    self.${id}.set_gain_mode(${gain_mode16}, 16)
+    self.${id}.set_gain(${gain16}, 16)
+    self.${id}.set_if_gain(${if_gain16}, 16)
+    self.${id}.set_bb_gain(${bb_gain16}, 16)
+    self.${id}.set_antenna(${ant16}, 16)
+    self.${id}.set_bandwidth(${bw16}, 16)
+    % endif
+    % if context.get('nchan')() > 17:
+    self.${id}.set_center_freq(${freq17}, 17)
+    self.${id}.set_freq_corr(${corr17}, 17)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode17}, 17)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode17}, 17)
+    self.${id}.set_gain_mode(${gain_mode17}, 17)
+    self.${id}.set_gain(${gain17}, 17)
+    self.${id}.set_if_gain(${if_gain17}, 17)
+    self.${id}.set_bb_gain(${bb_gain17}, 17)
+    self.${id}.set_antenna(${ant17}, 17)
+    self.${id}.set_bandwidth(${bw17}, 17)
+    % endif
+    % if context.get('nchan')() > 18:
+    self.${id}.set_center_freq(${freq18}, 18)
+    self.${id}.set_freq_corr(${corr18}, 18)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode18}, 18)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode18}, 18)
+    self.${id}.set_gain_mode(${gain_mode18}, 18)
+    self.${id}.set_gain(${gain18}, 18)
+    self.${id}.set_if_gain(${if_gain18}, 18)
+    self.${id}.set_bb_gain(${bb_gain18}, 18)
+    self.${id}.set_antenna(${ant18}, 18)
+    self.${id}.set_bandwidth(${bw18}, 18)
+    % endif
+    % if context.get('nchan')() > 19:
+    self.${id}.set_center_freq(${freq19}, 19)
+    self.${id}.set_freq_corr(${corr19}, 19)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode19}, 19)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode19}, 19)
+    self.${id}.set_gain_mode(${gain_mode19}, 19)
+    self.${id}.set_gain(${gain19}, 19)
+    self.${id}.set_if_gain(${if_gain19}, 19)
+    self.${id}.set_bb_gain(${bb_gain19}, 19)
+    self.${id}.set_antenna(${ant19}, 19)
+    self.${id}.set_bandwidth(${bw19}, 19)
+    % endif
+    % if context.get('nchan')() > 20:
+    self.${id}.set_center_freq(${freq20}, 20)
+    self.${id}.set_freq_corr(${corr20}, 20)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode20}, 20)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode20}, 20)
+    self.${id}.set_gain_mode(${gain_mode20}, 20)
+    self.${id}.set_gain(${gain20}, 20)
+    self.${id}.set_if_gain(${if_gain20}, 20)
+    self.${id}.set_bb_gain(${bb_gain20}, 20)
+    self.${id}.set_antenna(${ant20}, 20)
+    self.${id}.set_bandwidth(${bw20}, 20)
+    % endif
+    % if context.get('nchan')() > 21:
+    self.${id}.set_center_freq(${freq21}, 21)
+    self.${id}.set_freq_corr(${corr21}, 21)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode21}, 21)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode21}, 21)
+    self.${id}.set_gain_mode(${gain_mode21}, 21)
+    self.${id}.set_gain(${gain21}, 21)
+    self.${id}.set_if_gain(${if_gain21}, 21)
+    self.${id}.set_bb_gain(${bb_gain21}, 21)
+    self.${id}.set_antenna(${ant21}, 21)
+    self.${id}.set_bandwidth(${bw21}, 21)
+    % endif
+    % if context.get('nchan')() > 22:
+    self.${id}.set_center_freq(${freq22}, 22)
+    self.${id}.set_freq_corr(${corr22}, 22)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode22}, 22)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode22}, 22)
+    self.${id}.set_gain_mode(${gain_mode22}, 22)
+    self.${id}.set_gain(${gain22}, 22)
+    self.${id}.set_if_gain(${if_gain22}, 22)
+    self.${id}.set_bb_gain(${bb_gain22}, 22)
+    self.${id}.set_antenna(${ant22}, 22)
+    self.${id}.set_bandwidth(${bw22}, 22)
+    % endif
+    % if context.get('nchan')() > 23:
+    self.${id}.set_center_freq(${freq23}, 23)
+    self.${id}.set_freq_corr(${corr23}, 23)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode23}, 23)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode23}, 23)
+    self.${id}.set_gain_mode(${gain_mode23}, 23)
+    self.${id}.set_gain(${gain23}, 23)
+    self.${id}.set_if_gain(${if_gain23}, 23)
+    self.${id}.set_bb_gain(${bb_gain23}, 23)
+    self.${id}.set_antenna(${ant23}, 23)
+    self.${id}.set_bandwidth(${bw23}, 23)
+    % endif
+    % if context.get('nchan')() > 24:
+    self.${id}.set_center_freq(${freq24}, 24)
+    self.${id}.set_freq_corr(${corr24}, 24)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode24}, 24)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode24}, 24)
+    self.${id}.set_gain_mode(${gain_mode24}, 24)
+    self.${id}.set_gain(${gain24}, 24)
+    self.${id}.set_if_gain(${if_gain24}, 24)
+    self.${id}.set_bb_gain(${bb_gain24}, 24)
+    self.${id}.set_antenna(${ant24}, 24)
+    self.${id}.set_bandwidth(${bw24}, 24)
+    % endif
+    % if context.get('nchan')() > 25:
+    self.${id}.set_center_freq(${freq25}, 25)
+    self.${id}.set_freq_corr(${corr25}, 25)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode25}, 25)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode25}, 25)
+    self.${id}.set_gain_mode(${gain_mode25}, 25)
+    self.${id}.set_gain(${gain25}, 25)
+    self.${id}.set_if_gain(${if_gain25}, 25)
+    self.${id}.set_bb_gain(${bb_gain25}, 25)
+    self.${id}.set_antenna(${ant25}, 25)
+    self.${id}.set_bandwidth(${bw25}, 25)
+    % endif
+    % if context.get('nchan')() > 26:
+    self.${id}.set_center_freq(${freq26}, 26)
+    self.${id}.set_freq_corr(${corr26}, 26)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode26}, 26)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode26}, 26)
+    self.${id}.set_gain_mode(${gain_mode26}, 26)
+    self.${id}.set_gain(${gain26}, 26)
+    self.${id}.set_if_gain(${if_gain26}, 26)
+    self.${id}.set_bb_gain(${bb_gain26}, 26)
+    self.${id}.set_antenna(${ant26}, 26)
+    self.${id}.set_bandwidth(${bw26}, 26)
+    % endif
+    % if context.get('nchan')() > 27:
+    self.${id}.set_center_freq(${freq27}, 27)
+    self.${id}.set_freq_corr(${corr27}, 27)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode27}, 27)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode27}, 27)
+    self.${id}.set_gain_mode(${gain_mode27}, 27)
+    self.${id}.set_gain(${gain27}, 27)
+    self.${id}.set_if_gain(${if_gain27}, 27)
+    self.${id}.set_bb_gain(${bb_gain27}, 27)
+    self.${id}.set_antenna(${ant27}, 27)
+    self.${id}.set_bandwidth(${bw27}, 27)
+    % endif
+    % if context.get('nchan')() > 28:
+    self.${id}.set_center_freq(${freq28}, 28)
+    self.${id}.set_freq_corr(${corr28}, 28)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode28}, 28)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode28}, 28)
+    self.${id}.set_gain_mode(${gain_mode28}, 28)
+    self.${id}.set_gain(${gain28}, 28)
+    self.${id}.set_if_gain(${if_gain28}, 28)
+    self.${id}.set_bb_gain(${bb_gain28}, 28)
+    self.${id}.set_antenna(${ant28}, 28)
+    self.${id}.set_bandwidth(${bw28}, 28)
+    % endif
+    % if context.get('nchan')() > 29:
+    self.${id}.set_center_freq(${freq29}, 29)
+    self.${id}.set_freq_corr(${corr29}, 29)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode29}, 29)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode29}, 29)
+    self.${id}.set_gain_mode(${gain_mode29}, 29)
+    self.${id}.set_gain(${gain29}, 29)
+    self.${id}.set_if_gain(${if_gain29}, 29)
+    self.${id}.set_bb_gain(${bb_gain29}, 29)
+    self.${id}.set_antenna(${ant29}, 29)
+    self.${id}.set_bandwidth(${bw29}, 29)
+    % endif
+    % if context.get('nchan')() > 30:
+    self.${id}.set_center_freq(${freq30}, 30)
+    self.${id}.set_freq_corr(${corr30}, 30)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode30}, 30)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode30}, 30)
+    self.${id}.set_gain_mode(${gain_mode30}, 30)
+    self.${id}.set_gain(${gain30}, 30)
+    self.${id}.set_if_gain(${if_gain30}, 30)
+    self.${id}.set_bb_gain(${bb_gain30}, 30)
+    self.${id}.set_antenna(${ant30}, 30)
+    self.${id}.set_bandwidth(${bw30}, 30)
+    % endif
+    % if context.get('nchan')() > 31:
+    self.${id}.set_center_freq(${freq31}, 31)
+    self.${id}.set_freq_corr(${corr31}, 31)
+    self.${id}.set_dc_offset_mode(${dc_offset_mode31}, 31)
+    self.${id}.set_iq_balance_mode(${iq_balance_mode31}, 31)
+    self.${id}.set_gain_mode(${gain_mode31}, 31)
+    self.${id}.set_gain(${gain31}, 31)
+    self.${id}.set_if_gain(${if_gain31}, 31)
+    self.${id}.set_bb_gain(${bb_gain31}, 31)
+    self.${id}.set_antenna(${ant31}, 31)
+    self.${id}.set_bandwidth(${bw31}, 31)
+    % endif
+  callbacks:
+    - set_sample_rate(${sample_rate})
+    - set_center_freq(${freq0}, 0)
+    - set_freq_corr(${corr0}, 0)
+    - set_dc_offset_mode(${dc_offset_mode0}, 0)
+    - set_iq_balance_mode(${iq_balance_mode0}, 0)
+    - set_gain_mode(${gain_mode0}, 0)
+    - set_gain(${gain0}, 0)
+    - set_if_gain(${if_gain0}, 0)
+    - set_bb_gain(${bb_gain0}, 0)
+    - set_antenna(${ant0}, 0)
+    - set_bandwidth(${bw0}, 0)
+    - set_center_freq(${freq1}, 1)
+    - set_freq_corr(${corr1}, 1)
+    - set_dc_offset_mode(${dc_offset_mode1}, 1)
+    - set_iq_balance_mode(${iq_balance_mode1}, 1)
+    - set_gain_mode(${gain_mode1}, 1)
+    - set_gain(${gain1}, 1)
+    - set_if_gain(${if_gain1}, 1)
+    - set_bb_gain(${bb_gain1}, 1)
+    - set_antenna(${ant1}, 1)
+    - set_bandwidth(${bw1}, 1)
+    - set_center_freq(${freq2}, 2)
+    - set_freq_corr(${corr2}, 2)
+    - set_dc_offset_mode(${dc_offset_mode2}, 2)
+    - set_iq_balance_mode(${iq_balance_mode2}, 2)
+    - set_gain_mode(${gain_mode2}, 2)
+    - set_gain(${gain2}, 2)
+    - set_if_gain(${if_gain2}, 2)
+    - set_bb_gain(${bb_gain2}, 2)
+    - set_antenna(${ant2}, 2)
+    - set_bandwidth(${bw2}, 2)
+    - set_center_freq(${freq3}, 3)
+    - set_freq_corr(${corr3}, 3)
+    - set_dc_offset_mode(${dc_offset_mode3}, 3)
+    - set_iq_balance_mode(${iq_balance_mode3}, 3)
+    - set_gain_mode(${gain_mode3}, 3)
+    - set_gain(${gain3}, 3)
+    - set_if_gain(${if_gain3}, 3)
+    - set_bb_gain(${bb_gain3}, 3)
+    - set_antenna(${ant3}, 3)
+    - set_bandwidth(${bw3}, 3)
+    - set_center_freq(${freq4}, 4)
+    - set_freq_corr(${corr4}, 4)
+    - set_dc_offset_mode(${dc_offset_mode4}, 4)
+    - set_iq_balance_mode(${iq_balance_mode4}, 4)
+    - set_gain_mode(${gain_mode4}, 4)
+    - set_gain(${gain4}, 4)
+    - set_if_gain(${if_gain4}, 4)
+    - set_bb_gain(${bb_gain4}, 4)
+    - set_antenna(${ant4}, 4)
+    - set_bandwidth(${bw4}, 4)
+    - set_center_freq(${freq5}, 5)
+    - set_freq_corr(${corr5}, 5)
+    - set_dc_offset_mode(${dc_offset_mode5}, 5)
+    - set_iq_balance_mode(${iq_balance_mode5}, 5)
+    - set_gain_mode(${gain_mode5}, 5)
+    - set_gain(${gain5}, 5)
+    - set_if_gain(${if_gain5}, 5)
+    - set_bb_gain(${bb_gain5}, 5)
+    - set_antenna(${ant5}, 5)
+    - set_bandwidth(${bw5}, 5)
+    - set_center_freq(${freq6}, 6)
+    - set_freq_corr(${corr6}, 6)
+    - set_dc_offset_mode(${dc_offset_mode6}, 6)
+    - set_iq_balance_mode(${iq_balance_mode6}, 6)
+    - set_gain_mode(${gain_mode6}, 6)
+    - set_gain(${gain6}, 6)
+    - set_if_gain(${if_gain6}, 6)
+    - set_bb_gain(${bb_gain6}, 6)
+    - set_antenna(${ant6}, 6)
+    - set_bandwidth(${bw6}, 6)
+    - set_center_freq(${freq7}, 7)
+    - set_freq_corr(${corr7}, 7)
+    - set_dc_offset_mode(${dc_offset_mode7}, 7)
+    - set_iq_balance_mode(${iq_balance_mode7}, 7)
+    - set_gain_mode(${gain_mode7}, 7)
+    - set_gain(${gain7}, 7)
+    - set_if_gain(${if_gain7}, 7)
+    - set_bb_gain(${bb_gain7}, 7)
+    - set_antenna(${ant7}, 7)
+    - set_bandwidth(${bw7}, 7)
+    - set_center_freq(${freq8}, 8)
+    - set_freq_corr(${corr8}, 8)
+    - set_dc_offset_mode(${dc_offset_mode8}, 8)
+    - set_iq_balance_mode(${iq_balance_mode8}, 8)
+    - set_gain_mode(${gain_mode8}, 8)
+    - set_gain(${gain8}, 8)
+    - set_if_gain(${if_gain8}, 8)
+    - set_bb_gain(${bb_gain8}, 8)
+    - set_antenna(${ant8}, 8)
+    - set_bandwidth(${bw8}, 8)
+    - set_center_freq(${freq9}, 9)
+    - set_freq_corr(${corr9}, 9)
+    - set_dc_offset_mode(${dc_offset_mode9}, 9)
+    - set_iq_balance_mode(${iq_balance_mode9}, 9)
+    - set_gain_mode(${gain_mode9}, 9)
+    - set_gain(${gain9}, 9)
+    - set_if_gain(${if_gain9}, 9)
+    - set_bb_gain(${bb_gain9}, 9)
+    - set_antenna(${ant9}, 9)
+    - set_bandwidth(${bw9}, 9)
+    - set_center_freq(${freq10}, 10)
+    - set_freq_corr(${corr10}, 10)
+    - set_dc_offset_mode(${dc_offset_mode10}, 10)
+    - set_iq_balance_mode(${iq_balance_mode10}, 10)
+    - set_gain_mode(${gain_mode10}, 10)
+    - set_gain(${gain10}, 10)
+    - set_if_gain(${if_gain10}, 10)
+    - set_bb_gain(${bb_gain10}, 10)
+    - set_antenna(${ant10}, 10)
+    - set_bandwidth(${bw10}, 10)
+    - set_center_freq(${freq11}, 11)
+    - set_freq_corr(${corr11}, 11)
+    - set_dc_offset_mode(${dc_offset_mode11}, 11)
+    - set_iq_balance_mode(${iq_balance_mode11}, 11)
+    - set_gain_mode(${gain_mode11}, 11)
+    - set_gain(${gain11}, 11)
+    - set_if_gain(${if_gain11}, 11)
+    - set_bb_gain(${bb_gain11}, 11)
+    - set_antenna(${ant11}, 11)
+    - set_bandwidth(${bw11}, 11)
+    - set_center_freq(${freq12}, 12)
+    - set_freq_corr(${corr12}, 12)
+    - set_dc_offset_mode(${dc_offset_mode12}, 12)
+    - set_iq_balance_mode(${iq_balance_mode12}, 12)
+    - set_gain_mode(${gain_mode12}, 12)
+    - set_gain(${gain12}, 12)
+    - set_if_gain(${if_gain12}, 12)
+    - set_bb_gain(${bb_gain12}, 12)
+    - set_antenna(${ant12}, 12)
+    - set_bandwidth(${bw12}, 12)
+    - set_center_freq(${freq13}, 13)
+    - set_freq_corr(${corr13}, 13)
+    - set_dc_offset_mode(${dc_offset_mode13}, 13)
+    - set_iq_balance_mode(${iq_balance_mode13}, 13)
+    - set_gain_mode(${gain_mode13}, 13)
+    - set_gain(${gain13}, 13)
+    - set_if_gain(${if_gain13}, 13)
+    - set_bb_gain(${bb_gain13}, 13)
+    - set_antenna(${ant13}, 13)
+    - set_bandwidth(${bw13}, 13)
+    - set_center_freq(${freq14}, 14)
+    - set_freq_corr(${corr14}, 14)
+    - set_dc_offset_mode(${dc_offset_mode14}, 14)
+    - set_iq_balance_mode(${iq_balance_mode14}, 14)
+    - set_gain_mode(${gain_mode14}, 14)
+    - set_gain(${gain14}, 14)
+    - set_if_gain(${if_gain14}, 14)
+    - set_bb_gain(${bb_gain14}, 14)
+    - set_antenna(${ant14}, 14)
+    - set_bandwidth(${bw14}, 14)
+    - set_center_freq(${freq15}, 15)
+    - set_freq_corr(${corr15}, 15)
+    - set_dc_offset_mode(${dc_offset_mode15}, 15)
+    - set_iq_balance_mode(${iq_balance_mode15}, 15)
+    - set_gain_mode(${gain_mode15}, 15)
+    - set_gain(${gain15}, 15)
+    - set_if_gain(${if_gain15}, 15)
+    - set_bb_gain(${bb_gain15}, 15)
+    - set_antenna(${ant15}, 15)
+    - set_bandwidth(${bw15}, 15)
+    - set_center_freq(${freq16}, 16)
+    - set_freq_corr(${corr16}, 16)
+    - set_dc_offset_mode(${dc_offset_mode16}, 16)
+    - set_iq_balance_mode(${iq_balance_mode16}, 16)
+    - set_gain_mode(${gain_mode16}, 16)
+    - set_gain(${gain16}, 16)
+    - set_if_gain(${if_gain16}, 16)
+    - set_bb_gain(${bb_gain16}, 16)
+    - set_antenna(${ant16}, 16)
+    - set_bandwidth(${bw16}, 16)
+    - set_center_freq(${freq17}, 17)
+    - set_freq_corr(${corr17}, 17)
+    - set_dc_offset_mode(${dc_offset_mode17}, 17)
+    - set_iq_balance_mode(${iq_balance_mode17}, 17)
+    - set_gain_mode(${gain_mode17}, 17)
+    - set_gain(${gain17}, 17)
+    - set_if_gain(${if_gain17}, 17)
+    - set_bb_gain(${bb_gain17}, 17)
+    - set_antenna(${ant17}, 17)
+    - set_bandwidth(${bw17}, 17)
+    - set_center_freq(${freq18}, 18)
+    - set_freq_corr(${corr18}, 18)
+    - set_dc_offset_mode(${dc_offset_mode18}, 18)
+    - set_iq_balance_mode(${iq_balance_mode18}, 18)
+    - set_gain_mode(${gain_mode18}, 18)
+    - set_gain(${gain18}, 18)
+    - set_if_gain(${if_gain18}, 18)
+    - set_bb_gain(${bb_gain18}, 18)
+    - set_antenna(${ant18}, 18)
+    - set_bandwidth(${bw18}, 18)
+    - set_center_freq(${freq19}, 19)
+    - set_freq_corr(${corr19}, 19)
+    - set_dc_offset_mode(${dc_offset_mode19}, 19)
+    - set_iq_balance_mode(${iq_balance_mode19}, 19)
+    - set_gain_mode(${gain_mode19}, 19)
+    - set_gain(${gain19}, 19)
+    - set_if_gain(${if_gain19}, 19)
+    - set_bb_gain(${bb_gain19}, 19)
+    - set_antenna(${ant19}, 19)
+    - set_bandwidth(${bw19}, 19)
+    - set_center_freq(${freq20}, 20)
+    - set_freq_corr(${corr20}, 20)
+    - set_dc_offset_mode(${dc_offset_mode20}, 20)
+    - set_iq_balance_mode(${iq_balance_mode20}, 20)
+    - set_gain_mode(${gain_mode20}, 20)
+    - set_gain(${gain20}, 20)
+    - set_if_gain(${if_gain20}, 20)
+    - set_bb_gain(${bb_gain20}, 20)
+    - set_antenna(${ant20}, 20)
+    - set_bandwidth(${bw20}, 20)
+    - set_center_freq(${freq21}, 21)
+    - set_freq_corr(${corr21}, 21)
+    - set_dc_offset_mode(${dc_offset_mode21}, 21)
+    - set_iq_balance_mode(${iq_balance_mode21}, 21)
+    - set_gain_mode(${gain_mode21}, 21)
+    - set_gain(${gain21}, 21)
+    - set_if_gain(${if_gain21}, 21)
+    - set_bb_gain(${bb_gain21}, 21)
+    - set_antenna(${ant21}, 21)
+    - set_bandwidth(${bw21}, 21)
+    - set_center_freq(${freq22}, 22)
+    - set_freq_corr(${corr22}, 22)
+    - set_dc_offset_mode(${dc_offset_mode22}, 22)
+    - set_iq_balance_mode(${iq_balance_mode22}, 22)
+    - set_gain_mode(${gain_mode22}, 22)
+    - set_gain(${gain22}, 22)
+    - set_if_gain(${if_gain22}, 22)
+    - set_bb_gain(${bb_gain22}, 22)
+    - set_antenna(${ant22}, 22)
+    - set_bandwidth(${bw22}, 22)
+    - set_center_freq(${freq23}, 23)
+    - set_freq_corr(${corr23}, 23)
+    - set_dc_offset_mode(${dc_offset_mode23}, 23)
+    - set_iq_balance_mode(${iq_balance_mode23}, 23)
+    - set_gain_mode(${gain_mode23}, 23)
+    - set_gain(${gain23}, 23)
+    - set_if_gain(${if_gain23}, 23)
+    - set_bb_gain(${bb_gain23}, 23)
+    - set_antenna(${ant23}, 23)
+    - set_bandwidth(${bw23}, 23)
+    - set_center_freq(${freq24}, 24)
+    - set_freq_corr(${corr24}, 24)
+    - set_dc_offset_mode(${dc_offset_mode24}, 24)
+    - set_iq_balance_mode(${iq_balance_mode24}, 24)
+    - set_gain_mode(${gain_mode24}, 24)
+    - set_gain(${gain24}, 24)
+    - set_if_gain(${if_gain24}, 24)
+    - set_bb_gain(${bb_gain24}, 24)
+    - set_antenna(${ant24}, 24)
+    - set_bandwidth(${bw24}, 24)
+    - set_center_freq(${freq25}, 25)
+    - set_freq_corr(${corr25}, 25)
+    - set_dc_offset_mode(${dc_offset_mode25}, 25)
+    - set_iq_balance_mode(${iq_balance_mode25}, 25)
+    - set_gain_mode(${gain_mode25}, 25)
+    - set_gain(${gain25}, 25)
+    - set_if_gain(${if_gain25}, 25)
+    - set_bb_gain(${bb_gain25}, 25)
+    - set_antenna(${ant25}, 25)
+    - set_bandwidth(${bw25}, 25)
+    - set_center_freq(${freq26}, 26)
+    - set_freq_corr(${corr26}, 26)
+    - set_dc_offset_mode(${dc_offset_mode26}, 26)
+    - set_iq_balance_mode(${iq_balance_mode26}, 26)
+    - set_gain_mode(${gain_mode26}, 26)
+    - set_gain(${gain26}, 26)
+    - set_if_gain(${if_gain26}, 26)
+    - set_bb_gain(${bb_gain26}, 26)
+    - set_antenna(${ant26}, 26)
+    - set_bandwidth(${bw26}, 26)
+    - set_center_freq(${freq27}, 27)
+    - set_freq_corr(${corr27}, 27)
+    - set_dc_offset_mode(${dc_offset_mode27}, 27)
+    - set_iq_balance_mode(${iq_balance_mode27}, 27)
+    - set_gain_mode(${gain_mode27}, 27)
+    - set_gain(${gain27}, 27)
+    - set_if_gain(${if_gain27}, 27)
+    - set_bb_gain(${bb_gain27}, 27)
+    - set_antenna(${ant27}, 27)
+    - set_bandwidth(${bw27}, 27)
+    - set_center_freq(${freq28}, 28)
+    - set_freq_corr(${corr28}, 28)
+    - set_dc_offset_mode(${dc_offset_mode28}, 28)
+    - set_iq_balance_mode(${iq_balance_mode28}, 28)
+    - set_gain_mode(${gain_mode28}, 28)
+    - set_gain(${gain28}, 28)
+    - set_if_gain(${if_gain28}, 28)
+    - set_bb_gain(${bb_gain28}, 28)
+    - set_antenna(${ant28}, 28)
+    - set_bandwidth(${bw28}, 28)
+    - set_center_freq(${freq29}, 29)
+    - set_freq_corr(${corr29}, 29)
+    - set_dc_offset_mode(${dc_offset_mode29}, 29)
+    - set_iq_balance_mode(${iq_balance_mode29}, 29)
+    - set_gain_mode(${gain_mode29}, 29)
+    - set_gain(${gain29}, 29)
+    - set_if_gain(${if_gain29}, 29)
+    - set_bb_gain(${bb_gain29}, 29)
+    - set_antenna(${ant29}, 29)
+    - set_bandwidth(${bw29}, 29)
+    - set_center_freq(${freq30}, 30)
+    - set_freq_corr(${corr30}, 30)
+    - set_dc_offset_mode(${dc_offset_mode30}, 30)
+    - set_iq_balance_mode(${iq_balance_mode30}, 30)
+    - set_gain_mode(${gain_mode30}, 30)
+    - set_gain(${gain30}, 30)
+    - set_if_gain(${if_gain30}, 30)
+    - set_bb_gain(${bb_gain30}, 30)
+    - set_antenna(${ant30}, 30)
+    - set_bandwidth(${bw30}, 30)
+    - set_center_freq(${freq31}, 31)
+    - set_freq_corr(${corr31}, 31)
+    - set_dc_offset_mode(${dc_offset_mode31}, 31)
+    - set_iq_balance_mode(${iq_balance_mode31}, 31)
+    - set_gain_mode(${gain_mode31}, 31)
+    - set_gain(${gain31}, 31)
+    - set_if_gain(${if_gain31}, 31)
+    - set_bb_gain(${bb_gain31}, 31)
+    - set_antenna(${ant31}, 31)
+    - set_bandwidth(${bw31}, 31)
+
+documentation: |-
+    ######################################################
+    ######################################################
+    The osmocom source block supports:
+
+     * OsmoSDR Hardware
+     * RTL2832U based DVB-T dongles
+     * RTL-TCP spectrum server
+     * SDRplay RSP devices
+     * gnuradio .cfile input
+     * RFSPACE SDR-IQ, SDR-IP, NetSDR (incl. X2 option)
+     * AirSpy Wideband Receiver
+     * CCCamp Rad1o Badge
+     * Great Scott Gadgets HackRF
+     * Nuand LLC bladeRF
+     * Ettus USRP Devices through Ettus UHD library
+     * Fairwaves XTRX
+     * Fairwaves UmTRX
+     * Red Pitaya SDR Transceiver
+     * FreeSRP
+  
+
+    Output Type:
+    This parameter controls the data type of the stream in gnuradio. Only complex float32 samples are supported at the moment.
+  
+    Device Arguments:
+    The device argument is a comma delimited string used to locate devices on your system. Device arguments for multiple devices may be given by separating them with a space.
+    Use the device id or name/serial (if applicable) to specify a certain device or list of devices. If left blank, the first device found will be used.
+  
+    Examples:
+  
+    Optional arguments are placed into [] brackets, remove the brackets before using them! 
+    
+    Specific variable values are separated with a |, choose one of them. Variable values containing spaces shall be enclosed in '' as demonstrated in examples section below.
+    
+    Lines ending with ... mean it's possible to bind devices together by specifying multiple device arguments separated with a space.
+  
+      rtl=serial_number ...
+      
+      rtl=0[,rtl_xtal=28.8e6][,tuner_xtal=28.8e6] ...
+      
+      rtl=1[,buffers=32][,buflen=N*512] ...
+      
+      rtl=2[,direct_samp=0|1|2][,offset_tune=0|1][,bias=0|1] ...
+      
+      rtl_tcp=127.0.0.1:1234[,psize=16384][,direct_samp=0|1|2][,offset_tune=0|1][,bias=0|1] ...
+      
+      file='/path/to/your file',rate=1e6[,freq=100e6][,repeat=true][,throttle=true] ...
+      
+      netsdr=127.0.0.1[:50000][,nchan=2]
+      
+      sdr-ip=127.0.0.1[:50000]
+      
+      cloudiq=127.0.0.1[:50000]
+      
+      sdr-iq=/dev/ttyUSB0
+      
+      airspy=0[,bias=0|1][,linearity][,sensitivity]
+      
+      redpitaya=192.168.1.100[:1001]
+      
+      freesrp=0[,fx3='path/to/fx3.img',fpga='path/to/fpga.bin',loopback]
+      
+      hackrf=0[,buffers=32][,bias=0|1][,bias_tx=0|1]
+      
+      bladerf=0[,tamer=internal|external|external_1pps][,smb=25e6]
+      
+      uhd[,serial=...][,lo_offset=0][,mcr=52e6][,nchan=2][,subdev='\\'B:0 A:0\\''] ...
+      
+      xtrx
+  
+    Num Channels:
+    Selects the total number of channels in this multi-device configuration. Required when specifying multiple device arguments.
+  
+    Sample Rate:
+    The sample rate is the number of samples per second output by this block on each channel.
+  
+    Frequency:
+    The center frequency is the frequency the RF chain is tuned to.
+  
+    Frequency Correction:
+    The frequency correction factor in parts per million (ppm). Set to 0 if unknown.
+  
+    DC Offset Mode:
+    Controls the behavior of hardware DC offset corrrection.
+      Off: Disable correction algorithm (pass through).
+      Manual: Keep last estimated correction when switched from Automatic to Manual.
+      Automatic: Periodicallly find the best solution to compensate for DC offset.
+  
+    This functionality is available for USRP devices only.
+  
+    IQ Balance Mode:
+    Controls the behavior of software IQ imbalance corrrection.
+      Off: Disable correction algorithm (pass through).
+      Manual: Keep last estimated correction when switched from Automatic to Manual.
+      Automatic: Periodicallly find the best solution to compensate for image signals.
+  
+    This functionality depends on http://cgit.osmocom.org/cgit/gr-iqbal/
+  
+    Gain Mode:
+    Chooses between the manual (default) and automatic gain mode where appropriate.
+    To allow manual control of RF/IF/Baseband Gain stages, manual gain mode must be configured.
+    Currently, only RTL-SDR devices support automatic gain mode.
+  
+    RF Gain:
+    Overall RF gain of the device.
+  
+    Intermediate Frequency Gain:
+    Overall intermediate frequency gain of the device.
+    This setting is available for RTL-SDR and OsmoSDR devices with E4000 tuners and HackRF in receive and transmit mode. Observations lead to a reasonable gain range from 15 to 30dB.
+  
+    Baseband Gain:
+    Overall baseband gain of the device.
+    This setting is available for HackRF in receive mode. Observations lead to a reasonable gain range from 15 to 30dB.
+  
+    Antenna:
+    For devices with only one antenna, this may be left blank.
+    Otherwise, the user should specify one of the possible antenna choices.
+  
+    Bandwidth:
+    Set the bandpass filter on the radio frontend. To use the default (automatic) bandwidth filter setting, this should be zero.
+  
+    See the OsmoSDR project page for more detailed documentation:
+    http://sdr.osmocom.org/trac/wiki/GrOsmoSDR
+    http://sdr.osmocom.org/trac/wiki/rtl-sdr
+    http://sdr.osmocom.org/trac/
+
+    ######################################################
+    ######################################################
+
+file_format: 1

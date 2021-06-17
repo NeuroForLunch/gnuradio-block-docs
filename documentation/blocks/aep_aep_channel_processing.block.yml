@@ -1,0 +1,49 @@
+id: aep_aep_channel_processing
+label: AEP Channel Processing
+category: '[Core]/Analysis/Adaptive Event Processing'
+
+parameters:
+-   id: M
+    label: Number of Apertures
+    dtype: int
+    default: 4
+-   id: num_sc
+    label: Number of Subcarriers
+    dtype: int
+    default: 64
+-   id: thresh
+    label: Threshold
+    dtype: float
+    default: 5.0
+
+inputs:
+-   domain: stream
+    dtype: float
+    vlen: ${num_sc}
+-   domain: stream
+    dtype: complex
+    vlen: ${M*num_sc}
+
+outputs:
+-   domain: stream
+    dtype: complex
+    vlen: ${M*num_sc}
+
+templates:
+    imports: import aep
+    make: aep.aep_channel_processing(${M}, ${num_sc}, ${thresh})
+
+documentation: |-
+    ######################################################
+    ######################################################
+    The AEP Channel Processing block performs rate conversion of the calculated AEP beamforming vectors to be applied to the incoming samples at the original sampling rate.
+
+    This block is part of a module for demonstrating Adaptive Event Processing as described in Forsythe, Keith W. "Utilizing waveform features for adaptive beamforming and direction finding with narrowband signals." Lincoln Laboratory Journal 10.2 (1997): 99-126.
+
+    https://www.youtube.com/watch?v=gDGzc_4wcjM
+
+    This work was funded as part of the Perspecta Labs CASPER project. CASPER is an ongoing research project funded under the DARPA Leveraging the Analog Domain for Security program. The views, opinions and/or findings expressed are those of the author and should not be interpreted as representing the official views or policies of the Department of Defense or the U.S. Government.
+    ######################################################
+    ######################################################
+
+file_format: 1

@@ -1,5 +1,5 @@
 '[Core]':
-- Coding:
+- De+Scramblers:
   - digital_additive_scrambler_bb
   - digital_descrambler_bb
   - digital_scrambler_bb
@@ -7,11 +7,11 @@
   - digital_cma_equalizer_cc
   - digital_lms_dd_equalizer_cc
   - digital_kurtotic_equalizer_cc
-- Measurement Tools:
+- Analysis:
   - digital_mpsk_snr_est_cc
   - digital_probe_density_b
   - digital_probe_mpsk_snr_est_c
-- Modulators:
+- De+Modulators:
   - digital_cpmmod_bc
   - digital_gfsk_mod
   - digital_gfsk_demod
@@ -38,12 +38,11 @@
   - digital_packet_headergenerator_bb_default
   - digital_packet_headerparser_b
   - digital_packet_headerparser_b_default
-  - digital_packet_sink
   - digital_hdlc_framer_pb
   - digital_hdlc_deframer_bp
   - digital_simple_framer
   - digital_simple_correlator
-- OFDM:
+- Orthogonal Freq Div Multiplexing:
   - digital_ofdm_mod
   - digital_ofdm_demod
   - digital_ofdm_carrier_allocator_cvc
@@ -77,8 +76,10 @@
   - digital_pn_correlator_cc
   - digital_symbol_sync_xx
   - digital_corr_est_cc
-- Waveform Generators:
+- Sources:
   - digital_glfsr_source_x
+- Sinks:
+  - digital_packet_sink
 - Deprecated:
   - digital_correlate_access_code_bb
   - digital_simple_framer

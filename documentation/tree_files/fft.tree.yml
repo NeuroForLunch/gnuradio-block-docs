@@ -1,5 +1,5 @@
 '[Core]':
-- Fourier Analysis:
+- Analysis:
   - fft_vxx
   - goertzel_fc
   - logpwrfft_x

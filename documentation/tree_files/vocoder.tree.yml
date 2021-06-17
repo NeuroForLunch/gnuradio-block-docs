@@ -1,5 +1,5 @@
-'[Core]':
-- Audio:
+'[More]':
+- Encode+Decode:
   - vocoder_alaw_decode_bs
   - vocoder_alaw_encode_sb
   - vocoder_codec2_decode_ps

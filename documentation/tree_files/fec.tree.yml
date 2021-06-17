@@ -1,4 +1,4 @@
-'[Core]':
+'[More]':
 - Error Coding:
   - Decoders:
     - variable_cc_decoder_def
@@ -37,7 +37,8 @@
   - fec_puncture_xx
   - fec_depuncture_bb
   - fec_ber_bf
-  - fec_bercurve_generator
   - variable_polar_code_configurator
   - variable_ldpc_H_matrix_def
   - variable_ldpc_G_matrix_def
+- Sources:
+  - fec_bercurve_generator

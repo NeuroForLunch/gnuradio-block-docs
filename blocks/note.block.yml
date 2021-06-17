@@ -1,0 +1,17 @@
+id: note
+label: Note
+flags: [ python, cpp ]
+
+parameters:
+-   id: note
+    label: Note
+    dtype: string
+
+documentation: |-
+    ######################################################
+    ######################################################
+    Use this block for displaying a message in GRC.
+    ######################################################
+    ######################################################
+
+file_format: 1

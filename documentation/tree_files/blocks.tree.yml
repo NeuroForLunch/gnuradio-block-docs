@@ -1,7 +1,34 @@
 '[Core]':
-- Audio:
+- Sources:
   - blocks_wavfile_source
+  - blocks_wavfile_source
+  - blocks_file_source
+  - blocks_file_descriptor_source
+  - blocks_file_meta_source
+  - blocks_null_source
+  - blocks_udp_source
+  - blocks_vector_source_x
+  - blocks_tags_strobe
+- Sinks:
   - blocks_wavfile_sink
+  - blocks_vector_sink_x
+  - blocks_wavfile_sink
+  - blocks_file_sink
+  - blocks_file_meta_sink
+  - blocks_file_descriptor_sink
+  - blocks_tagged_file_sink
+  - blocks_null_sink
+  - blocks_tcp_server_sink
+  - blocks_udp_sink
+  - blocks_tagged_file_sink
+- aCommon:
+  - blocks_throttle
+  - blocks_head
+  - blocks_skiphead
+  - blocks_delay
+  - blocks_copy
+  - blocks_selector
+  - blocks_nop
 - Boolean Operators:
   - blocks_and_xx
   - blocks_and_const_xx
@@ -21,25 +48,13 @@
   - blocks_ctrlport_probe2_c
   - blocks_ctrlport_probe_c
 - Debug Tools:
-  - blocks_vector_sink_x
   - blocks_tag_debug
   - blocks_message_debug
   - blocks_random_pdu
   - blocks_message_strobe
   - blocks_message_strobe_random
-  - blocks_tags_strobe
   - blocks_test_tag_variable_rate_ff
-- File Operators:
-  - blocks_wavfile_source
-  - blocks_wavfile_sink
-  - blocks_file_source
-  - blocks_file_sink
-  - blocks_file_descriptor_source
-  - blocks_file_descriptor_sink
-  - blocks_file_meta_source
-  - blocks_file_meta_sink
-  - blocks_tagged_file_sink
-- Level Controllers:
+- Filters:
   - blocks_mute_xx
   - blocks_sample_and_hold_xx
   - blocks_moving_average_xx
@@ -66,14 +81,12 @@
   - blocks_argmax_xx
   - blocks_max_xx
   - blocks_min_xx
-- Measurement Tools:
+- Analysis:
   - blocks_message_debug
   - blocks_tag_debug
   - blocks_probe_signal_x
   - blocks_probe_signal_vx
   - blocks_probe_rate
-  - blocks_ctrlport_probe2_c
-  - blocks_ctrlport_probe_c
 - Message Tools:
   - blocks_message_strobe
   - blocks_message_strobe_random
@@ -85,29 +98,15 @@
   - blocks_tagged_stream_multiply_length
   - blocks_tagged_stream_to_pdu
   - blocks_random_pdu
-- Misc:
-  - blocks_throttle
-  - blocks_vector_source_x
-  - blocks_head
-  - blocks_skiphead
-  - blocks_delay
-  - blocks_null_source
-  - blocks_null_sink
-  - blocks_copy
-  - blocks_selector
-  - blocks_nop
-  - xmlrpc_server
-  - xmlrpc_client
-- Modulators:
+- De+Modulators:
   - blocks_vco_f
   - blocks_vco_c
 - Networking Tools:
   - blocks_tuntap_pdu
   - blocks_socket_pdu
-  - blocks_tcp_server_sink
-  - blocks_udp_source
-  - blocks_udp_sink
-- Peak Detectors:
+  - xmlrpc_server
+  - xmlrpc_client
+- Analysis:
   - blocks_burst_tagger
   - blocks_peak_detector_xb
   - blocks_peak_detector2_fb
@@ -136,7 +135,6 @@
   - blocks_tag_debug
   - blocks_tag_gate
   - blocks_tag_share
-  - blocks_tagged_file_sink
   - blocks_tagged_stream_mux
   - blocks_tagged_stream_align
   - blocks_stream_to_tagged_stream
@@ -165,7 +163,7 @@
   - blocks_short_to_char
   - blocks_short_to_float
   - blocks_uchar_to_float
-- Waveform Generators:
+- Unknown:
   - blocks_vco_f
   - blocks_vco_c
 - Variables:

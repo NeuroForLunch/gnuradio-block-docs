@@ -1,5 +1,5 @@
 id: fosphor_glfw_sink_c
-label: fosphor sink (GLFW)
+label: GLFW Fosphor sink
 
 parameters:
 -   id: wintype
@@ -49,7 +49,7 @@ documentation: |-
     s/w:    adjust zoom width
     q/e:    adjust screen split between waterfall and fft
     space:  pause display
-    
+
     (left)/(right)  adjust dB/div
     (up)/(down)     adjust reference level
 

@@ -1,5 +1,5 @@
 '[Core]':
-- Level Controllers:
+- Filters:
   - analog_agc_xx
   - analog_agc2_xx
   - analog_agc3_xx
@@ -22,7 +22,7 @@
   - analog_fm_demod_cf
   - analog_fm_deemph
   - analog_fm_preemph
-- Waveform Generators:
+- Sources:
   - analog_sig_source_x
   - analog_const_source_x
   - analog_noise_source_x
@@ -33,7 +33,6 @@
   - analog_pll_carriertracking_cc
   - analog_pll_freqdet_cf
   - analog_pll_refout_cc
-- Peak Detectors:
+- Analysis:
   - analog_dpll_bb
-- Measurement Tools:
   - analog_probe_avg_mag_sqrd_x

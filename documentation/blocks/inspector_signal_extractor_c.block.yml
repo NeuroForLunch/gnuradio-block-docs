@@ -1,0 +1,66 @@
+id: inspector_signal_extractor_c
+label: Signal Extractor
+category: '[Core]/Analysis/Conditioning'
+
+templates:
+  imports: import inspector
+  make: inspector.signal_extractor_c(${signal}, ${resample}, ${rate}, ${osf})
+  callbacks:
+  - set_signal(${signal})
+
+#  Make one 'parameters' list entry for every Parameter you want settable from the GUI.
+#     Sub-entries of dictionary:
+#     * id (makes the value accessible as \$keyname, e.g. in the make entry)
+#     * label
+#     * dtype
+parameters:
+- id: signal
+  label: Signal
+  dtype: int
+- id: resample
+  label: Resample signal
+  dtype: bool
+  default: False
+  options: [True, False]
+  option_labels: ['On', 'Off']
+- id: rate
+  label: Output Sample Rate
+  dtype: real
+  default: 48000
+  hide: ${('none' if resample else 'all')}
+- id: osf
+  label: Oversampling
+  dtype: real
+  default: 1
+  hide: ${('none' if resample else 'all')}
+
+#  Make one 'inputs' list entry per input. Sub-entries of dictionary:
+#      * label (an identifier for the GUI)
+#      * domain
+#      * dtype
+#      * vlen
+#      * optional (set to 1 for optional inputs)
+inputs:
+- label: sig_in
+  domain: message
+
+#  Make one 'outputs' list entry per output. Sub-entries of dictionary:
+#      * label (an identifier for the GUI)
+#      * dtype
+#      * vlen
+#      * optional (set to 1 for optional inputs)
+outputs:
+- label: out
+  domain: stream
+  dtype: complex
+
+documentation: |-
+    ######################################################
+    ######################################################
+    Adapter block to extract the samples of one signal out of the messages from the Signal Separator. Output is again a complex stream.
+
+    Resampling can be used to assure a constant output sample rate of the stream. (Needed for FM demod for instance.)
+    ######################################################
+    ######################################################
+
+file_format: 1

@@ -1,0 +1,29 @@
+id: doppler_MsgPairToVar
+label: Message Pair to Variable Sink
+category: '[Core]/Sinks'
+
+parameters:
+-   id: target
+    label: Variable
+    dtype: string
+    default: 'freq'
+
+inputs:
+-   domain: message
+    id: inpair
+
+templates:
+    imports: import doppler
+    make: doppler.MsgPairToVar(${ 'self.set_' + context.get('target')() })
+
+documentation: |-
+    ######################################################
+    ######################################################
+    This block will take an input message pair and allow you to set a variable.
+
+    WARNING: The variable cannot be tied to any QT UI control or it will throw an exception.
+
+    ######################################################
+    ######################################################
+
+file_format: 1

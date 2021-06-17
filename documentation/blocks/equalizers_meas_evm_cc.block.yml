@@ -1,0 +1,60 @@
+id: equalizers_meas_evm_cc
+label: EVM Measurement
+category: '[Core]/Equalizers'
+
+templates:
+  imports: import equalizers
+  make: equalizers.meas_evm_cc(${cons},${meas_type})
+
+parameters:
+- id: cons
+  label: Digital Constellation Object
+  dtype: raw
+  hide: 'part'
+- id: meas_type
+  label: EVM Meas Type
+  dtype: enum
+  options: [equalizers.EVM_PERCENT, equalizers.EVM_DB]
+  option_labels: [Percent, Power-Ratio (dB)]
+  hide: part
+
+inputs:
+- domain: stream
+  dtype: complex
+  vlen: 1
+
+outputs:
+- domain: stream
+  dtype: float
+  vlen: 1
+
+documentation: |-
+    ######################################################
+    ######################################################
+    This module is intended to extend the equalizer functionality of gnuradio by the following:
+    - Add data-aided training sequence based adaptive filtering
+    - Generalize the equalizer structures and separate from the underlying adaptive algorithm such that new algorithms can be implemented without creating duplicate blocks
+    - Other general performance improvements
+
+    It is based heavily on the code of the gnuradio LMS and CMA decision directed equalizers
+
+    ## Modes of Operation
+
+    The linear/decision-feedback equalizer blocks operate in 3 states:
+
+    1. IDLE
+        - Apply the current taps to the incoming signal with no updating to the current taps
+    2. TRAINING
+        - Adapt the filter according to a specified training sequence that lines up with a tag in the incoming stream
+    3. Decision Directed (DD)
+        - Perform decision directed adaptation based on the expected constellation of the signal
+
+    If a training sequence and training start tag are given, then the equalizer will begin adapting the filter at the sample corresponding to the specified tag as it is received.
+
+    If the adapt_after_training flag is set, then the equalizer will continue adapting according to the specified constellation after the training sequence has passed
+
+    If no training sequence or no tag is specified, then the equalizer will operate in Decision Directed mode (as in current GNU Radio equalizers)
+    ######################################################
+    ######################################################
+
+file_format: 1

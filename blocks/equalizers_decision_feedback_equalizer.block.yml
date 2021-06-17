@@ -1,0 +1,89 @@
+id: equalizers_decision_feedback_equalizer
+label: Decision Feedback Equalizer
+category: '[Core]/Equalizers'
+flags: [ python ]
+
+templates:
+  imports: import equalizers
+  make: equalizers.decision_feedback_equalizer(${num_taps_fwd},${num_taps_rev}, ${training_sequence},  ${adapt_after_training}, ${sps}, ${alg}, ${training_start_tag})
+
+parameters:
+-   id: num_taps_fwd
+    label: Num. Taps (Forward)
+    dtype: int
+    default: 5
+-   id: num_taps_rev
+    label: Num. Taps (Feedback)
+    dtype: int
+    default: 3
+-   id: training_sequence
+    label: Training Sequence
+    dtype: complex_vector
+    default: '[ ]'
+    hide: 'part'
+-   id: training_start_tag
+    label: Training Start Tag
+    dtype: string
+    default: 'corr_est'
+    hide: 'part'
+-   id: adapt_after_training
+    label: Adapt After Training
+    dtype: bool
+    default: 'True'
+    hide: 'part'
+-   id: sps
+    label: Input Samples per Symbol
+    dtype: int
+-   id: alg
+    label: Adaptive Algorithm Object
+    dtype: raw
+    hide: 'part'
+
+inputs:
+-   domain: stream
+    dtype: complex
+
+outputs:
+-   domain: stream
+    dtype: complex
+-   label: taps
+    domain: stream
+    dtype: complex
+    vlen: ${num_taps_fwd+num_taps_rev}
+    optional: true
+    optional: true
+-   label: state
+    domain: stream
+    dtype: short
+    optional: true
+
+documentation: |-
+    ######################################################
+    ######################################################
+    This module is intended to extend the equalizer functionality of gnuradio by the following:
+    - Add data-aided training sequence based adaptive filtering
+    - Generalize the equalizer structures and separate from the underlying adaptive algorithm such that new algorithms can be implemented without creating duplicate blocks
+    - Other general performance improvements
+
+    It is based heavily on the code of the gnuradio LMS and CMA decision directed equalizers
+
+    ## Modes of Operation
+
+    The linear/decision-feedback equalizer blocks operate in 3 states:
+
+    1. IDLE
+        - Apply the current taps to the incoming signal with no updating to the current taps
+    2. TRAINING
+        - Adapt the filter according to a specified training sequence that lines up with a tag in the incoming stream
+    3. Decision Directed (DD)
+        - Perform decision directed adaptation based on the expected constellation of the signal
+
+    If a training sequence and training start tag are given, then the equalizer will begin adapting the filter at the sample corresponding to the specified tag as it is received.
+
+    If the adapt_after_training flag is set, then the equalizer will continue adapting according to the specified constellation after the training sequence has passed
+
+    If no training sequence or no tag is specified, then the equalizer will operate in Decision Directed mode (as in current GNU Radio equalizers)
+    ######################################################
+    ######################################################
+
+file_format: 1

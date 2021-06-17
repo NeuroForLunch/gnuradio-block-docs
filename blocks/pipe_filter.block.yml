@@ -1,0 +1,135 @@
+id: pipe_filter
+label: Unix Pipe I/O Filter
+category: '[Core]/aCommon'
+
+parameters:
+- id: in_type
+  label: Input Type
+  dtype: enum
+  options: [complex, float, int, short, byte]
+  option_attributes:
+    size: [gr.sizeof_gr_complex, gr.sizeof_float, gr.sizeof_int,
+           gr.sizeof_short, gr.sizeof_char]
+  hide: part
+- id: in_vlen
+  label: Input Vector Length
+  default: '1'
+  dtype: int
+  hide: ${ 'part' if in_vlen == 1 else 'none' }
+- id: out_type
+  label: Output Type
+  dtype: enum
+  options: [complex, float, int, short, byte]
+  option_attributes:
+    size: [gr.sizeof_gr_complex, gr.sizeof_float, gr.sizeof_int,
+           gr.sizeof_short, gr.sizeof_char]
+  hide: part
+- id: out_vlen
+  label: Output Vector Length
+  default: '1'
+  dtype: int
+  hide: ${ 'part' if out_vlen == 1 else 'none' }
+- id: rel_rate
+  label: Relative Rate
+  default: '1.0'
+  dtype: real
+  hide: ${ 'part' if rel_rate == 1.0 else 'none' }
+- id: command
+  label: Command
+  dtype: string
+- id: unbuffered
+  label: Unbuffered
+  dtype: bool
+  default: 'False'
+  options: ['False', 'True']
+  option_labels: ['No', 'Yes']
+  hide: ${ 'part' if unbuffered == 'No' else 'none' }
+
+asserts:
+- ${ in_vlen > 0 }
+- ${ out_vlen > 0}
+- ${ len(command) > 0 }
+
+inputs:
+- label: in
+  domain: stream
+  dtype: ${in_type}
+  vlen: ${in_vlen}
+
+outputs:
+- label: out
+  domain: stream
+  dtype: ${out_type}
+  vlen: ${out_vlen}
+
+templates:
+  imports: import pipe
+  make: |-
+      pipe.filter(${in_type.size}*${in_vlen}, ${out_type.size}*${out_vlen}, ${rel_rate}, ${command})
+      self.${id}.set_unbuffered(${unbuffered})
+
+documentation: |-
+    ######################################################
+    ######################################################
+    Use any program as a source, sink or filter by using standard I/O pipes.
+
+    A typical filter block command will consume data "forever" on its standard input, process it, and produce data on its standard output, until end-of-file (EOF) is read, for normal termination. Also in case of exception, SIGPIPE may be caught.
+
+    The main goals of these blocks are:
+
+    * Fast development of new experimental blocks (no need to dig into C++ / GNU Radio internals / SWIG / Python).
+
+    * Ability to use any programming language able to deal with standard input and output (code a block in your preferred language: C, Java, MatLab, Perl, Ruby...).
+
+    Simple interface:
+
+    The gr-pipe blocks read and write samples sequentially in their GNU Radio internal representation.
+
+    The format is the same as for gr_file_source and gr_file_sink:
+
+    GRC name = C Type = size
+
+    Complex = two C floats (I,Q) = sizeof(float)*2, usually 8 bytes
+
+    Float = float = sizeof(float), usually 4 bytes
+
+    Int = int = sizeof(int), usually 4 bytes
+
+    Short = short = sizeof(short),usually 2 bytes
+
+    Byte = unsigned char = sizeof(unsigned char), 1 byte
+
+    Since the actual size of some objects may depend on the host platform, it is recommended to use the available language definitions to get correct sizes. Most languages are also providing routines to read/write native machine C types.
+
+    In pipe blocks, commands are executed in a /bin/sh shell, so every standard shell features are available in commands provided to blocks (variables, loops, pipes, redirection, etc...).
+
+    See examples for a "square" block implemented in C, Java, MatLab/GNU Octave, Perl and Python.
+
+    Suggestions of use:
+
+    * Compression (gzip, lzma, ...)
+    * Encryption (gpg, openssl, ...)
+    * Encoding (ffmpeg, mencoder, gsm-tools, ...)
+    * Debugging (od, hexdump, ...)
+    * Interface to devices (aplay, arecord, pacat, parec, ...)
+    * Use your own tools...
+
+    Known limitations and problems:
+
+    * Small performance loss, due to pipe communications.
+
+    * Small addition of latency, due to pipe buffers.
+      (On Linux, pipe buffer capacity can be changed.  See fcntl(2) F_SETPIPE_SZ).
+
+    * Not compatible with stream tags
+
+    * Limited to only one input and one output maximum per block
+      (but you may use an interleaver or multiple blocks).
+
+    Feedback and comments are welcome!
+
+    Julien Olivain <juju@cotds.org>
+    ######################################################
+    ######################################################
+
+file_format: 1

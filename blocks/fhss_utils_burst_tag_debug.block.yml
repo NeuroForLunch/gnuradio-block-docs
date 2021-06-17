@@ -1,0 +1,81 @@
+id: fhss_utils_burst_tag_debug
+label: Burst Tagger Debug
+category: '[Core]/Analysis'
+
+templates:
+  imports: import fhss_utils
+  make: fhss_utils.burst_tag_debug(${filename}, ${nrows}, ${fft_size}, ${nrows_avg}, ${sample_rate}, ${quality}, ${always_on})
+
+parameters:
+- id: filename
+  label: Filename
+  dtype: string
+  default: "/tmp/btd"
+
+- id: nrows
+  label: NRows per Image
+  dtype: int
+  default: "5000"
+
+- id: fft_size
+  label: FFT Size
+  dtype: int
+  default: "1024"
+
+- id: nrows_avg
+  label: NFFTs Avg'ed
+  dtype: int
+  default: "1"
+
+- id: sample_rate
+  label: Sample Rate
+  dtype: float
+  default: "samp_rate"
+
+- id: quality
+  label: JPEG Quality
+  dtype: int
+  default: "75"
+
+- id: always_on
+  label: Always On
+  dtype: int
+  default: "False"
+
+inputs:
+-   domain: message
+    id: "fft_in"
+    optional: true
+
+-   domain: message
+    id: "burst_in_r"
+    optional: true
+
+-   domain: message
+    id: "burst_in_g"
+    optional: true
+
+-   domain: message
+    id: "burst_in_b"
+    optional: true
+
+outputs:
+-   domain: message
+    id: "pdu_out"
+    optional: true
+
+documentation: |-
+    ######################################################
+    ######################################################
+    This GNU Radio module contains tools for processing frequency hopping spread spectrum signals. Blocks derived from the gr-iridium project exist to detect narrowband bursts within wideband signals and downconvert and center them. Metadata is tracked through this process enabling reconstruction of where the bursts originated in time and frequency. Another set of blocks exists to baseband all bursts within a high fidelity signal capture which is useful for reverse engineering of FHSS datasets.
+
+    ### General Concept of High Fidelity FHSS Signal Dehopping
+
+    The dataset dehopper blocks were designed to quickly allow for good accuracy dehopping of high fidelity FHSS FSK recordings. This is accomplished by a two-stage dehopping process by which a coarse FFT is taken and peak values are taken by a simple sample-and-hold block when an amplitude threshold is crossed, then a second stage does fine frequency correction by taking an instantaneous frequency average. This works well for FSK signals but requires some work for other signals.
+
+
+    Simple FHSS Dehopping Flowgraph: gr-fhss/docs/figures/fhss_dehopper.png
+    ######################################################
+    ######################################################
+
+file_format: 1
